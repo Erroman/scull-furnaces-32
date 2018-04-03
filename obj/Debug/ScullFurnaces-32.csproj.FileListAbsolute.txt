@@ -1,0 +1,17 @@
+C:\Endeavours\ScullFurnaces-32\obj\Debug\Scull_Furnaces_Main_Window.g.cs
+C:\Endeavours\ScullFurnaces-32\obj\Debug\App.g.cs
+C:\Endeavours\ScullFurnaces-32\obj\Debug\ScullFurnaces-32_MarkupCompile.cache
+C:\Endeavours\ScullFurnaces-32\obj\Debug\ScullFurnaces-32_MarkupCompile.lref
+C:\Endeavours\ScullFurnaces-32\obj\Debug\Scull_Furnaces_Main_Window.baml
+C:\Endeavours\ScullFurnaces-32\obj\Debug\ScullFurnaces-32.g.resources
+C:\Endeavours\ScullFurnaces-32\obj\Debug\ScullFurnaces_32.Properties.Resources.resources
+C:\Endeavours\ScullFurnaces-32\obj\Debug\ScullFurnaces-32.csproj.GenerateResource.Cache
+C:\Endeavours\ScullFurnaces-32\obj\Debug\ScullFurnaces-32.exe
+C:\Endeavours\ScullFurnaces-32\obj\Debug\ScullFurnaces-32.pdb
+C:\Endeavours\ScullFurnaces-32\ScullFurnaces-32.exe.config
+C:\Endeavours\ScullFurnaces-32\ScullFurnaces-32.exe
+C:\Endeavours\ScullFurnaces-32\ScullFurnaces-32.pdb
+C:\Endeavours\ScullFurnaces-32\obj\Debug\Clock.g.cs
+C:\Endeavours\ScullFurnaces-32\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Endeavours\ScullFurnaces-32\obj\Debug\Clock.baml
+C:\Endeavours\ScullFurnaces-32\obj\Debug\App.baml

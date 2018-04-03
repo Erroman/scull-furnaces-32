@@ -1,0 +1,1 @@
+%comspec% /k "C:\Program Files\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvars32.bat"
