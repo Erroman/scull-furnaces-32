@@ -5,24 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Threading;
 using static Constants;
-using static System.Console;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 namespace ScullFurnaces_32 {
 partial class Scull_Furnaces_Main_Window
  {
@@ -48,7 +31,6 @@ partial class Scull_Furnaces_Main_Window
             double ymax = rectBounds.Height-marginY;
             double step = Math.Round((xmax - xmin)/(24*6));
 			
-			string unitOfMeasure;
 			double dotsPerSecond = (xmax - xmin)/SecondsInADay;
 			int intSecondsPerDot = (int)(SecondsInADay/(xmax - xmin));
 			double dotsPerVolt = 100*step/100;

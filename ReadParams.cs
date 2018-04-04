@@ -205,7 +205,7 @@ public class TickParamsAll
 				}
 				catch(Exception e)
 				{
-					Console.WriteLine("Блок № {0} значений изменившихся параметров некорректен!",blockNumber);
+					Console.WriteLine("Блок № {0} значений изменившихся параметров некорректен! Исключение {1}",blockNumber,e);
 					goto NextPackedBlock;
 				}
 			}

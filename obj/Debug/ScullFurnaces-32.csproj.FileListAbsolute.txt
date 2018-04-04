@@ -15,3 +15,4 @@ C:\Endeavours\ScullFurnaces-32\obj\Debug\Clock.g.cs
 C:\Endeavours\ScullFurnaces-32\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Endeavours\ScullFurnaces-32\obj\Debug\Clock.baml
 C:\Endeavours\ScullFurnaces-32\obj\Debug\App.baml
+C:\Endeavours\ScullFurnaces-32\obj\Debug\ScullFurnaces-32.csprojResolveAssemblyReference.cache

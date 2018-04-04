@@ -37,9 +37,6 @@ private void clockButton_Click(object O,RoutedEventArgs e)
 		case "ticksDown":
 			DownTick();
 			break;
-			
-			
-		e.Handled=true;
 	}
 }
 private void DownSecond()

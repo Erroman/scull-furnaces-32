@@ -112,19 +112,14 @@ namespace ScullFurnaces_32
             {
                 case 0:
                     return Brushes.Blue;
-                    break;
                 case 1:
                     return Brushes.Blue;
-                    break;
                 case 2:
                     return Brushes.Blue;
-                    break;
                 case 3:
                     return Brushes.Blue;
-                    break;
                 default:
                     return Brushes.Red;
-                    break;
             }
 
         }

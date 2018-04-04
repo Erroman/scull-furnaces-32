@@ -11,6 +11,7 @@
         <local:TimePresenter x:Key = "timePresenter"/>
         <!--local:TimeUnit x:Key = "timeUnit"/-->
         <local:MyUserSettings x:Key = "RememberedfileName"/>
+        <local:TimeMoverEx x:Key = "timeMover"/>
 
         <Style TargetType="{x:Type local:TabControlEx}">
             <Setter Property="Template">

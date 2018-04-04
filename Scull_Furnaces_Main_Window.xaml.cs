@@ -23,7 +23,7 @@ namespace ScullFurnaces_32
         bool buttonState = false;
         public TypeOfParameters _typeOfParameters = new TypeOfParameters();
         public RemembranceOfFileName _remembranceOfFileName = new RemembranceOfFileName();
-        private PointCollection points = null;
+        //private PointCollection points = null;
         //private  TextBox tbWithMaxYValue;
 
         public Scull_Furnaces_Main_Window()
@@ -87,7 +87,7 @@ namespace ScullFurnaces_32
                                                                                               //в память с инструментарием для работы с ним.
                 app.unpackedParameters = new TickParamsAll(packedParameters); //получение распакованного массива
                 this._remembranceOfFileName.fileName = Globals.fileName;
-                TimeMover.numberOfSecond = TimeMover.numberOfSecond;
+                //TimeMover.numberOfSecond = TimeMover.numberOfSecond;
                 voltagePlotting(ParameterName.Напряжение_дуги, voltageGraph);
                 currentPlotting(ParameterName.Ток_общ, currentGraph);
                 vacuumPlotting(ParameterName.Вакуум, vacuumGraph);

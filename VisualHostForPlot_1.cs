@@ -28,7 +28,7 @@ class VisualHostForPlot_1:FrameworkElement
 	}
 	private DrawingVisual CreateDrawingVisualPlot()
 	{
-		const double dashTickLength = 10;
+		//const double dashTickLength = 10;
 		double xmin = rectBounds.X;
 		double xmax = rectBounds.Width;
 		double ymin = rectBounds.X;
@@ -48,7 +48,6 @@ class VisualHostForPlot_1:FrameworkElement
 		xmin,xmax,
 		ymin,ymax
 		);
-		string unitOfMeasure;
 		// double dotsPerSecond = (xmax - xmin)/SecondsInADay;
 		// int intSecondsPerDot = (int)(SecondsInADay/(xmax - xmin));
 		double dotsPerSecond = (xmax - xmin)/(UpperLimitForTimeOnXAxis-LowerLimitForTimeOnXAxis);
@@ -82,29 +81,10 @@ class VisualHostForPlot_1:FrameworkElement
 				
 				intAssembled = BitConverter.ToInt16(unpackedParameters.inflatedParameters,iParam);
 				realValueOfFunction = (double)intAssembled/10;
-				switch(Constants.ParameterData[(int)(parameterName)].parameterUnit)
-					{
-						case ParameterUnit._:
-						unitOfMeasure="";
-						break;
-						case ParameterUnit.м3_ч:
-						unitOfMeasure="м3/ч";
-						break;
-						case ParameterUnit.мм_рт_ст:
-						if(intAssembled <0)
-						{	
-						unitOfMeasure="мм рт.ст";
-						intAssembled &= 0x777;
-						}
-						else
-						unitOfMeasure="мк";						
-						break;
-
-					}
 			}		
 			else
 				throw new Exception();
-			//*
+			
 			if(peakAtInterval < realValueOfFunction )peakAtInterval = realValueOfFunction;
 			if(bottomAtInterval > realValueOfFunction )bottomAtInterval = realValueOfFunction;
 			if(numSec%intSecondsPerDot==0)  //intSecondsPerDot обращается в 0!
