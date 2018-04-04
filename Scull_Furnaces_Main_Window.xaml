@@ -8,10 +8,10 @@
         mc:Ignorable="d"
         Title="Рабочее место оператора-технолога гарнисажных печей">
     <Window.Resources>
-        <local:TimePresenter x:Key = "timePresenter"/>
+        <!--local:TimePresenter x:Key = "timePresenter"/-->
         <!--local:TimeUnit x:Key = "timeUnit"/-->
         <local:MyUserSettings x:Key = "RememberedfileName"/>
-        <local:TimeMoverEx x:Key = "timeMover"/>
+        <!--local:TimeMoverEx x:Key = "timeMover"/-->
 
         <Style TargetType="{x:Type local:TabControlEx}">
             <Setter Property="Template">
@@ -121,10 +121,10 @@
                 <GroupBox x:Name="groupBox" Grid.Row = "0" Header="Время суток час:мин:сек"  Height="60" Margin="2,2,2,2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="246">
                     <DockPanel>
 
-                        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="30" TextWrapping="Wrap" 
+                        <!--TextBox x:Name="textBox" HorizontalAlignment="Left" Height="30" TextWrapping="Wrap" 
 			Text="{Binding Path=(local:TimeMover.numberOfSecond),Mode = TwoWay,UpdateSourceTrigger=PropertyChanged}" Width="120">
-                        </TextBox>
-
+                        </TextBox-->
+                        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="30" TextWrapping="Wrap"  Width="120"/>
 
                         <!--TextBox x:Name="textBox" HorizontalAlignment="Left" Height="30" TextWrapping="Wrap" Text="{Binding Source={x:Static local:TimeMover.numberOfSecond},Path=Source,Mode = TwoWay}" Width="120" /-->
                         <!--TextBox x:Name="textBox" HorizontalAlignment="Left" Height="30" TextWrapping="Wrap" Text="TextBox" Width="120" /-->
@@ -144,12 +144,15 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <TextBox x:Name="timeHour" Grid.Column = "0" Text ="{Binding Path=(local:TimeMover.numberOfSecond),Mode = TwoWay,UpdateSourceTrigger=PropertyChanged,
-  Converter = {StaticResource timePresenter},ConverterParameter = Hours}"/>
-                    <TextBox x:Name="timeMin" Grid.Column = "2" Text ="{Binding Path=(local:TimeMover.numberOfSecond),Mode = TwoWay,UpdateSourceTrigger=PropertyChanged,
-  Converter = {StaticResource timePresenter},ConverterParameter = Minutes}"/>
-                    <TextBox x:Name="timeSec" Grid.Column = "4" Text ="{Binding Path=(local:TimeMover.numberOfSecond),Mode = TwoWay,UpdateSourceTrigger=PropertyChanged,
-  Converter = {StaticResource timePresenter},ConverterParameter = Seconds}"/>
+                    <!--TextBox x:Name="timeHour" Grid.Column = "0" Text ="{Binding Path=(local:TimeMover.numberOfSecond),Mode = TwoWay,UpdateSourceTrigger=PropertyChanged,
+  Converter = {StaticResource timePresenter},ConverterParameter = Hours}"/-->
+                    <TextBox x:Name="timeHour" Grid.Column = "0" />
+                    <!--TextBox x:Name="timeMin" Grid.Column = "2" Text ="{Binding Path=(local:TimeMover.numberOfSecond),Mode = TwoWay,UpdateSourceTrigger=PropertyChanged,
+  Converter = {StaticResource timePresenter},ConverterParameter = Minutes}"/-->
+                    <TextBox x:Name="timeMin" Grid.Column = "2" />
+                    <!--TextBox x:Name="timeSec" Grid.Column = "4" Text ="{Binding Path=(local:TimeMover.numberOfSecond),Mode = TwoWay,UpdateSourceTrigger=PropertyChanged,
+  Converter = {StaticResource timePresenter},ConverterParameter = Seconds}"/-->
+                    <TextBox x:Name="timeSec" Grid.Column = "4" />
                 </Grid>
             </Grid>
             <StackPanel Orientation = "Vertical">
