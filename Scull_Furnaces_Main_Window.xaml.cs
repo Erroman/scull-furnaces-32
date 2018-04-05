@@ -48,17 +48,6 @@ namespace ScullFurnaces_32
             _typeOfParameters.theNumberOfTab = _typeOfParameters.theNumberOfTab == 1 ? 0 : 1;
         }
 
-        private void moveUp(object sender, RoutedEventArgs e)
-        {
-            ((ColorSource)Constants.ParameterData[2071].colorBinding.Source).parameterState = ((ColorSource)Constants.ParameterData[2071].colorBinding.Source).parameterState == 0 ? 1 : 0;
-            TimeMover.numberOfSecond++;
-        }
-
-        private void moveDown(object sender, RoutedEventArgs e)
-        {
-            TimeMover.numberOfSecond--;
-        }
-
         private void filePickerButton_Click(object sender, RoutedEventArgs e)
         {
             // Create the OpenFIleDialog object
@@ -137,6 +126,12 @@ namespace ScullFurnaces_32
         {
             currentGraph.Children.Clear();
             currentPlotting(ParameterName.Ток_общ, currentGraph, null, aea);
+
+        }
+        public void setTimeValue(AlarmEventArgs aea)
+        {
+            WriteLine("The time moment under consideration: {0}",aea.TicksToAlarm);
+            TimeMover.numberOfSecond = aea.TicksToAlarm;
 
         }
 

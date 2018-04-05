@@ -55,6 +55,7 @@ namespace ScullFurnaces_32
             scull_Furnaces_Main_Window.endTimeOnXAxis.Ticks.Text = mySettings.TimeUpperBoundaryForTheCurrent.ToString();
             scull_Furnaces_Main_Window.begTimeOnXAxis.clockWatch.AlarmProcedure += scull_Furnaces_Main_Window.setMinTimeValue;
             scull_Furnaces_Main_Window.endTimeOnXAxis.clockWatch.AlarmProcedure += scull_Furnaces_Main_Window.setMaxTimeValue;
+            scull_Furnaces_Main_Window.momentOfTime.clockWatch.AlarmProcedure += scull_Furnaces_Main_Window.setTimeValue;
             scull_Furnaces_Main_Window.begTimeOnXAxis.clockWatch.Alarm_On = true;   //обновлять график при изменении нижней границы диапазона времени	
             scull_Furnaces_Main_Window.endTimeOnXAxis.clockWatch.Alarm_On = true; //обновлять график при изменении верхней границы диапазона времени
 

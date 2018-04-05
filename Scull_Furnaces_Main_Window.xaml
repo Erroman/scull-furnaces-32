@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-         WindowStartupLocation="CenterScreen" WindowState="Maximized"
+        WindowStartupLocation="CenterScreen" WindowState="Maximized"
         xmlns:local="clr-namespace:ScullFurnaces_32"
         mc:Ignorable="d"
         Title="Рабочее место оператора-технолога гарнисажных печей">
@@ -113,53 +113,14 @@
         </local:TabControlEx>
         <!--Второй ряд на экране табличного элемента Grid,где расположены управляющие элементы-->
         <DockPanel Grid.Row="1">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <GroupBox x:Name="groupBox" Grid.Row = "0" Header="Время суток час:мин:сек"  Height="60" Margin="2,2,2,2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="246">
-                    <DockPanel>
-
-                        <!--TextBox x:Name="textBox" HorizontalAlignment="Left" Height="30" TextWrapping="Wrap" 
-			Text="{Binding Path=(local:TimeMover.numberOfSecond),Mode = TwoWay,UpdateSourceTrigger=PropertyChanged}" Width="120">
-                        </TextBox-->
-                        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="30" TextWrapping="Wrap"  Width="120"/>
-
-                        <!--TextBox x:Name="textBox" HorizontalAlignment="Left" Height="30" TextWrapping="Wrap" Text="{Binding Source={x:Static local:TimeMover.numberOfSecond},Path=Source,Mode = TwoWay}" Width="120" /-->
-                        <!--TextBox x:Name="textBox" HorizontalAlignment="Left" Height="30" TextWrapping="Wrap" Text="TextBox" Width="120" /-->
-                        <StackPanel VerticalAlignment = "Center">
-                            <Button Height = "15" FontFamily="Marlett" Content="5" Click="moveUp"/>
-                            <Button Height = "15" FontFamily="Marlett" Content="6" Click="moveDown"/>
-                        </StackPanel>
-
-                    </DockPanel>
-
-                </GroupBox>
-                <Grid Grid.Row = "1">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <!--TextBox x:Name="timeHour" Grid.Column = "0" Text ="{Binding Path=(local:TimeMover.numberOfSecond),Mode = TwoWay,UpdateSourceTrigger=PropertyChanged,
-  Converter = {StaticResource timePresenter},ConverterParameter = Hours}"/-->
-                    <TextBox x:Name="timeHour" Grid.Column = "0" />
-                    <!--TextBox x:Name="timeMin" Grid.Column = "2" Text ="{Binding Path=(local:TimeMover.numberOfSecond),Mode = TwoWay,UpdateSourceTrigger=PropertyChanged,
-  Converter = {StaticResource timePresenter},ConverterParameter = Minutes}"/-->
-                    <TextBox x:Name="timeMin" Grid.Column = "2" />
-                    <!--TextBox x:Name="timeSec" Grid.Column = "4" Text ="{Binding Path=(local:TimeMover.numberOfSecond),Mode = TwoWay,UpdateSourceTrigger=PropertyChanged,
-  Converter = {StaticResource timePresenter},ConverterParameter = Seconds}"/-->
-                    <TextBox x:Name="timeSec" Grid.Column = "4" />
-                </Grid>
-            </Grid>
-            <StackPanel Orientation = "Vertical">
-                <TextBlock x:Name ="filePathTextBox"  Text="{Binding Source = {StaticResource RememberedfileName},Path=FileName,Mode = OneWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Height="25" Margin="420,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-                <Button x:Name="filePickerButton" Click="filePickerButton_Click" Content="Выбор файла" HorizontalAlignment="Center" Margin="420,35,0,0" VerticalAlignment="Top"/>
-            </StackPanel>
-
+                <Border>
+                    
+                <local:Clock x:Name="momentOfTime"  DockPanel.Dock ="Left" Margin="150,60,0,54"/>
+ 
+                </Border>
+                <TextBlock DockPanel.Dock="Top" Foreground="AntiqueWhite" x:Name ="filePathTextBox"  Text="{Binding Source = {StaticResource RememberedfileName},Path=FileName,Mode = OneWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Margin="200,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                <Button DockPanel.Dock="Top" x:Name="filePickerButton" Click="filePickerButton_Click" Content="Выбор файла" HorizontalAlignment="Center" Margin="200,35,0,0" VerticalAlignment="Top"/>
+           
 
         </DockPanel>
     </Grid>
