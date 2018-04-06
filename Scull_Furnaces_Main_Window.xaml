@@ -47,13 +47,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Name = "plotRow" Height = "*"/>
             <RowDefinition Height="150"/>
-            <!--RowDefinition Name = "plotRow" Height = "10*"/>
-<RowDefinition Height="*"/-->
-
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
 
         <local:TabControlEx x:Name="tabControl" Grid.Row="0" SelectedIndex = "{Binding Path=theNumberOfTab, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             <TabItem Header="Напряжение дуги">
@@ -112,15 +106,41 @@
             </TabItem>
         </local:TabControlEx>
         <!--Второй ряд на экране табличного элемента Grid,где расположены управляющие элементы-->
-        <DockPanel Grid.Row="1">
-                <Border>
-                    
-                <local:Clock x:Name="momentOfTime"  DockPanel.Dock ="Left" Margin="150,60,0,54"/>
- 
-                </Border>
-                <TextBlock DockPanel.Dock="Top" Foreground="AntiqueWhite" x:Name ="filePathTextBox"  Text="{Binding Source = {StaticResource RememberedfileName},Path=FileName,Mode = OneWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Margin="200,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-                <Button DockPanel.Dock="Top" x:Name="filePickerButton" Click="filePickerButton_Click" Content="Выбор файла" HorizontalAlignment="Center" Margin="200,35,0,0" VerticalAlignment="Top"/>
-           
+        <DockPanel x:Name="momentFixer1" Grid.Row="1" Grid.RowSpan="3">
+            <Grid x:Name="momentFixer"  DockPanel.Dock ="Left" Margin="150,60,0,18">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Content="Часы" Foreground="AntiqueWhite"/>
+                    <Label Grid.Column="1" Content="Минуты" Foreground="AntiqueWhite"/>
+                    <Label Grid.Column="2" Content="Секунды" Foreground="AntiqueWhite"/>
+                    <Label Grid.Column="3"  Foreground="AntiqueWhite">
+                        <AccessText TextWrapping="WrapWithOverflow">
+                            Секунды с начала суток
+                        </AccessText>
+                    </Label>
+                </Grid>
+                <local:Clock Grid.Row="1" x:Name="momentOfTime" Grid.ColumnSpan="4"/>
+
+            </Grid>
+
+            <TextBlock DockPanel.Dock="Top" Foreground="AntiqueWhite" x:Name ="filePathTextBox"  Text="{Binding Source = {StaticResource RememberedfileName},Path=FileName,Mode = OneWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Margin="200,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <Button DockPanel.Dock="Top" x:Name="filePickerButton" Click="filePickerButton_Click" Content="Выбор файла" HorizontalAlignment="Center" Margin="200,35,0,0" VerticalAlignment="Top"/>
+
+
 
         </DockPanel>
     </Grid>
