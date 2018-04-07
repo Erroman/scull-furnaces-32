@@ -6,7 +6,7 @@
         WindowStartupLocation="CenterScreen" WindowState="Maximized"
         xmlns:local="clr-namespace:ScullFurnaces_32"
         mc:Ignorable="d"
-        Title="Рабочее место оператора-технолога гарнисажных печей">
+        Title="Рабочее место оператора-технолога гарнисажных печей" Height="765.133" Width="1374.175">
     <Window.Resources>
         <!--local:TimePresenter x:Key = "timePresenter"/-->
         <!--local:TimeUnit x:Key = "timeUnit"/-->
@@ -106,8 +106,8 @@
             </TabItem>
         </local:TabControlEx>
         <!--Второй ряд на экране табличного элемента Grid,где расположены управляющие элементы-->
-        <DockPanel x:Name="momentFixer1" Grid.Row="1" Grid.RowSpan="3">
-            <Grid x:Name="momentFixer"  DockPanel.Dock ="Left" Margin="150,60,0,18">
+        <DockPanel x:Name="momentFixer1" Grid.Row="1">
+            <Grid x:Name="momentFixer"  DockPanel.Dock ="Left" Margin="150,20,0,18">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
@@ -133,11 +133,12 @@
                         </AccessText>
                     </Label>
                 </Grid>
-                <local:Clock Grid.Row="1" x:Name="momentOfTime" Grid.ColumnSpan="4"/>
+                <local:Clock Grid.Row="1" x:Name="momentOfTime" Margin="0,0,0,5"/>
 
             </Grid>
+            <Label Content="hello,it's some parameter!"  DockPanel.Dock ="Left" Margin="150,20,0,18"/>
 
-            <TextBlock DockPanel.Dock="Top" Foreground="AntiqueWhite" x:Name ="filePathTextBox"  Text="{Binding Source = {StaticResource RememberedfileName},Path=FileName,Mode = OneWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Margin="200,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <TextBlock DockPanel.Dock="Top" Foreground="Green" x:Name ="filePathTextBox"  Text="{Binding Source = {StaticResource RememberedfileName},Path=FileName,Mode = OneWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Margin="200,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
             <Button DockPanel.Dock="Top" x:Name="filePickerButton" Click="filePickerButton_Click" Content="Выбор файла" HorizontalAlignment="Center" Margin="200,35,0,0" VerticalAlignment="Top"/>
 
 
