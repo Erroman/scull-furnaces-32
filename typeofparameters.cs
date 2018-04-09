@@ -26,4 +26,11 @@ public class TypeOfParameters:INotifyPropertyChanged
 		 OnPropertyChanged("theNumberOfTab");
 	}
  }
+    public string theNameOfTab
+    {
+        get
+        {
+            return (_theNumberOfTab == 1) ? "Ток" : "Something else";
+        }
+    }
 }
