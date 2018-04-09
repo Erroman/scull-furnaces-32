@@ -6,6 +6,7 @@ public class TypeOfParameters:INotifyPropertyChanged
  void OnPropertyChanged(string propertyName)
         {
             if (PropertyChanged != null)
+            //
                 PropertyChanged(this, new PropertyChangedEventArgs("theNumberOfTab"));
 
         }

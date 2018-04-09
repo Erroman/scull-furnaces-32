@@ -143,10 +143,11 @@
                 <local:Clock Grid.Row="1"  Grid.ColumnSpan="4" x:Name="momentOfTime" Margin="2,0,0,40"/>
 
             </Grid>
-            <Label Content="hello,it's some parameter!" Grid.Column="1"  FontSize="16" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            <Label Content="hello,it's some parameter!" Grid.Column="1"  FontSize="16" Background="Black"  Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" />
 
             <TextBlock Grid.Column="2" Foreground="White" Text="{Binding Source = {StaticResource RememberedfileName},Path=FileName,Mode = OneWay,UpdateSourceTrigger=PropertyChanged}" x:Name ="filePathTextBox" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16"/>
             <Button Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="filePickerButton" Click="filePickerButton_Click" Content="Выбор файла"/>
+            <Label Content="It's value" Grid.Column="1"  FontSize="16" Background="Black"  Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="131,9,135,11" Grid.Row="1" />
 
 
 

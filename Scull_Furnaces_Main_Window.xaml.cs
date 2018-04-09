@@ -20,19 +20,12 @@ namespace ScullFurnaces_32
     {
 
         Scull_Furnaces_AppMain_Class app = (Scull_Furnaces_AppMain_Class)Application.Current;
-        bool buttonState = false;
         public TypeOfParameters _typeOfParameters = new TypeOfParameters();
         public RemembranceOfFileName _remembranceOfFileName = new RemembranceOfFileName();
-        //private PointCollection points = null;
-        //private  TextBox tbWithMaxYValue;
 
         public Scull_Furnaces_Main_Window()
         {
             this.DataContext = _typeOfParameters;
-            //this.begTimeOnXAxis.clockWatch.Ticks = app.mySettings.TimeLowerBoundaryForTheCurrent;
-            //this.endTimeOnXAxis.clockWatch.Ticks = app.mySettings.TimeUpperBoundaryForTheCurrent;
-
-
         }
         void OnClosing(object o, EventArgs ea)
         {
@@ -41,13 +34,6 @@ namespace ScullFurnaces_32
             app.mySettings.Save();
 
         }
-
-        void click_b(object o, EventArgs ea)
-        {
-            app.show_number_button.Content = (Int32.Parse(app.show_number_button.Content.ToString())) + 1;
-            _typeOfParameters.theNumberOfTab = _typeOfParameters.theNumberOfTab == 1 ? 0 : 1;
-        }
-
         private void filePickerButton_Click(object sender, RoutedEventArgs e)
         {
             // Create the OpenFIleDialog object
