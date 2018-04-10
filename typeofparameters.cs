@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using static Constants;
 public class TypeOfParameters:INotifyPropertyChanged
 {
  public event PropertyChangedEventHandler PropertyChanged;
@@ -28,10 +29,16 @@ public class TypeOfParameters:INotifyPropertyChanged
 		 OnPropertyChanged(nameof(theNumberOfTab));
 	}
  }
+    //при переходе на другую вкладку изменияется привязка между таймером и массивом значений,
+    //демонстратор значения устанваливает новую привязку,для нового параметра, который демонстрируется 
+    //на данной вкладке.
     public string theNameOfParameter
     {
         get
         {
+            //выписываем имя демонструемого на данной вкладке параметра
+            //используя ассоциативный массив TabControlData
+            //TabControlData
             return (_theNumberOfTab == 1) ? "Ток" : "Something else";
         }
     }
@@ -39,6 +46,7 @@ public class TypeOfParameters:INotifyPropertyChanged
     {
         get
         {
+            //устанвыливаем привязку между таймером и демонстрируемым значением параметра
             return (_theNumberOfTab == 1) ? "Ток" : "Very big number indeed";
       
         }
