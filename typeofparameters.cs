@@ -7,9 +7,11 @@ public class TypeOfParameters:INotifyPropertyChanged
         {
             if (PropertyChanged != null)
             //
-                PropertyChanged(this, new PropertyChangedEventArgs("theNumberOfTab"));
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+                PropertyChanged(this, new PropertyChangedEventArgs(nameof(theNameOfParameter)));
+                PropertyChanged(this, new PropertyChangedEventArgs(nameof(theValueOfParameter)));
 
-        }
+    }
 //свойство  theNumberOfTab привязывается к XAML коду на окне,чтобы отображать, и далее запоминать 
 //на диске номер просматриваемой  вкладки 
 //между сеансами работы
@@ -23,14 +25,23 @@ public class TypeOfParameters:INotifyPropertyChanged
 	set 
 	{
 		 _theNumberOfTab = value;
-		 OnPropertyChanged("theNumberOfTab");
+		 OnPropertyChanged(nameof(theNumberOfTab));
 	}
  }
-    public string theNameOfTab
+    public string theNameOfParameter
     {
         get
         {
             return (_theNumberOfTab == 1) ? "Ток" : "Something else";
         }
     }
+    public string theValueOfParameter
+    {
+        get
+        {
+            return (_theNumberOfTab == 1) ? "Ток" : "Very big number indeed";
+      
+        }
+    }
+
 }

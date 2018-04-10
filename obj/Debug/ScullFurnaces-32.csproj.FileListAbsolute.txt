@@ -34,4 +34,3 @@ C:\Endeavours\scull-furnaces-32\obj\Debug\ScullFurnaces-32.exe
 C:\Endeavours\scull-furnaces-32\obj\Debug\ScullFurnaces-32.pdb
 C:\Endeavours\scull-furnaces-32\ScullFurnaces-32.exe
 C:\Endeavours\scull-furnaces-32\ScullFurnaces-32.pdb
-C:\Endeavours\scull-furnaces-32\obj\Debug\ScullFurnaces-32.csproj.CoreCompileInputs.cache

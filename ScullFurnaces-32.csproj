@@ -64,6 +64,7 @@
     <Compile Include="remembrance_of_fileName.cs" />
     <Compile Include="roaming_discretes.cs" />
     <Compile Include="TabControlEx.cs" />
+    <Compile Include="TabData.cs" />
     <Compile Include="TransformWorldToScreen.cs" />
     <Compile Include="typeofparameters.cs" />
     <Compile Include="VacuumPlotting.cs" />
