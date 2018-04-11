@@ -70,17 +70,13 @@ namespace ScullFurnaces_32
                 {
                     DiscretePlaque btnControl = new DiscretePlaque() { Content = parameterDescription.parameterName };
                     btnControl.discreteNumber = pair.Key; // the key in the Dictionary remembered
-                                                          //Binding colorBindingForAParameter = new Binding("parameterState"); //to the parameterDesription !!!
-                    Binding colorBindingForAParameter = parameterDescription.colorBinding;
+                                                          
                     ColorSource colorSourceForAParameter = new ColorSource();
-                    colorBindingForAParameter.Source = colorSourceForAParameter;
-                    //put the Binding into initial state, setting the parameterState in colorSourceForAParameter in accordance with the parameter value being read from disk
+                    parameterDescription.colorBinding.Source = colorSourceForAParameter;
+                    parameterDescription.colorBinding.Converter = colorSourceForAParameter;
 
-                    colorBindingForAParameter.Converter = colorSourceForAParameter;
-
-                    btnControl.SetBinding(Button.BackgroundProperty, colorBindingForAParameter);
+                    btnControl.SetBinding(Button.BackgroundProperty, parameterDescription.colorBinding);
                     btnControl.Template = (ControlTemplate)scull_Furnaces_Main_Window.FindResource("MyBetterButtonTemplate");
-                    //btnControl.discreteNumber - ?? how to define ? the number in  []
 
                     scull_Furnaces_Main_Window.uniGrid.Children.Add(btnControl);
                 }
@@ -101,6 +97,7 @@ namespace ScullFurnaces_32
             mySettings.Save();
 
         }
+        //Установить связь между таймером и окошком для отображенеи
         void rememberTheChosenFileName(object o, PropertyChangedEventArgs a)
         {
             mySettings.FileName = scull_Furnaces_Main_Window._remembranceOfFileName.fileName;

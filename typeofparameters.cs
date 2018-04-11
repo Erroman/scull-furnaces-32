@@ -38,8 +38,8 @@ public class TypeOfParameters:INotifyPropertyChanged
         {
             //выписываем имя демонструемого на данной вкладке параметра
             //используя ассоциативный массив TabControlData
-            //TabControlData
-            return (_theNumberOfTab == 1) ? "Ток" : "Something else";
+                       
+            return (TabControlData[_theNumberOfTab].parameterNameToDisplay);
         }
     }
     public string theValueOfParameter
@@ -47,6 +47,11 @@ public class TypeOfParameters:INotifyPropertyChanged
         get
         {
             //устанвыливаем привязку между таймером и демонстрируемым значением параметра
+            //вернуть не значение, а привязку! 
+            //Нетушки, там уже есть привязка,возвращающая значения!
+            //Привязку надо устанавливать где-то в другом месте, но только не здесь!
+            //Поставить обработчик где - нибудь к PropertyChanged и менять в нём привязку.
+            //Или привязаться обработчиком к SelectedIndex и там менять.
             return (_theNumberOfTab == 1) ? "Ток" : "Very big number indeed";
       
         }

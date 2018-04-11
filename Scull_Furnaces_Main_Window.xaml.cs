@@ -26,6 +26,8 @@ namespace ScullFurnaces_32
         public Scull_Furnaces_Main_Window()
         {
             this.DataContext = _typeOfParameters;
+            //И где-то здесь мне надо привязать к таймеру выбор параметра в элементе TextBox instantParameterValue
+            //но логичнее это сделать в App.xaml.cs, ведь там я привязал дискреты к таймеру!
         }
         void OnClosing(object o, EventArgs ea)
         {
