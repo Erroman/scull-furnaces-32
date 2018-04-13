@@ -10,13 +10,15 @@ public enum TimeUnit
 	minute,
 	hour
 }
-public static class TimeMover
+    //Устанавливает состояние панели с дискретами а заданный момент времени с начала суток,
+    //записываемый в свойство numberOfSecond
+    public static class TimeMover
 {
 	private static Scull_Furnaces_Main_Window scull_Furnaces_Main_Window = ((Scull_Furnaces_AppMain_Class)Application.Current).scull_Furnaces_Main_Window;
 	private static TickParamsAll unpackedParameters;
-	private static int _numberOfSecond = 1;
+	private static int _numberOfSecond = 0;
 	
-	public static event EventHandler numberOfSecondChanged;
+	public static event EventHandler numberOfSecondChanged; //не используется
 
     public static double Voltage { get; set;}
     public static double Current { get; set;}
@@ -31,17 +33,19 @@ public static class TimeMover
 		}
 		set
 		{
-			if(value>0 & value<=SecondsInADay)
+			if(value>=0 & value<SecondsInADay)
 			{
 				_numberOfSecond = value;
                 setAllTheDiscretePlaquesOnTheTab();
-                //set voltage,current,vacuum and water consumption at the moment
+                    //set voltage,current,vacuum and water consumption at the moment
+                    Console.WriteLine("Секунда для дискретов: {0}", _numberOfSecond);
 
             }
             if (numberOfSecondChanged != null) numberOfSecondChanged(null, EventArgs.Empty);
 
             void setAllTheDiscretePlaquesOnTheTab()
             {
+                    unpackedParameters = ((Scull_Furnaces_AppMain_Class)Application.Current).unpackedParameters;
                     foreach (var buttonControl in scull_Furnaces_Main_Window.uniGrid.Children)
                     {
                         //по номеру секунды и номеру параметра выбираем нужный байт в памяти и маску для него
@@ -49,8 +53,7 @@ public static class TimeMover
                         //((DiscretePlaque)buttonControl).discreteNumber
                         //WriteLine(((DiscretePlaque)buttonControl).discreteNumber/10);
                         //WriteLine(ParameterData[((DiscretePlaque)buttonControl).discreteNumber].parameterName);
-                        unpackedParameters = ((Scull_Furnaces_AppMain_Class)Application.Current).unpackedParameters;
-                        byte byteWithDiscretes = unpackedParameters.inflatedParameters[(_numberOfSecond - 1) * Constants.ParamsBlockLengthInBytes + ((DiscretePlaque)buttonControl).discreteNumber / 10];
+                        byte byteWithDiscretes = unpackedParameters.inflatedParameters[(_numberOfSecond) * Constants.ParamsBlockLengthInBytes + ((DiscretePlaque)buttonControl).discreteNumber / 10];
                         ((ColorSource)Constants.ParameterData[((DiscretePlaque)buttonControl).discreteNumber].colorBinding.Source).parameterState =
                         (byte)Constants.ParameterData[((DiscretePlaque)buttonControl).discreteNumber].bitMask & byteWithDiscretes;    // !!!!!!!!!!!!!!!
 

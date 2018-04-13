@@ -116,12 +116,7 @@ namespace ScullFurnaces_32
             currentPlotting(ParameterName.Ток_общ, currentGraph, null, aea);
 
         }
-        public void setTimeValue(AlarmEventArgs aea)
-        {
-            WriteLine("The time moment under consideration: {0}",aea.TicksToAlarm);
-            TimeMover.numberOfSecond = aea.TicksToAlarm;
-
-        }
+ 
 
 
     }

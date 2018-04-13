@@ -55,13 +55,14 @@ namespace ScullFurnaces_32
             scull_Furnaces_Main_Window.endTimeOnXAxis.Ticks.Text = mySettings.TimeUpperBoundaryForTheCurrent.ToString();
             scull_Furnaces_Main_Window.begTimeOnXAxis.clockWatch.AlarmProcedure += scull_Furnaces_Main_Window.setMinTimeValue;
             scull_Furnaces_Main_Window.endTimeOnXAxis.clockWatch.AlarmProcedure += scull_Furnaces_Main_Window.setMaxTimeValue;
-            scull_Furnaces_Main_Window.momentOfTime.clockWatch.AlarmProcedure += scull_Furnaces_Main_Window.setTimeValue;
+            scull_Furnaces_Main_Window.momentOfTime.clockWatch.AlarmProcedure += scull_Furnaces_Main_Window.setParameterValueOnTheTab;
             scull_Furnaces_Main_Window.begTimeOnXAxis.clockWatch.Alarm_On = true;   //обновлять график при изменении нижней границы диапазона времени	
             scull_Furnaces_Main_Window.endTimeOnXAxis.clockWatch.Alarm_On = true; //обновлять график при изменении верхней границы диапазона времени
-
+        
             scull_Furnaces_Main_Window.WindowStyle = WindowStyle.ToolWindow;
             scull_Furnaces_Main_Window.Show();
-
+            //Создаём табло с набором дискретных параметров и привязкой каждого из них к свойству parameterState
+            //в обьекте класса ColorSource
             ParameterAllValues parameterDescription = null;
             foreach (var pair in ParameterData)
             {
@@ -71,7 +72,8 @@ namespace ScullFurnaces_32
                     DiscretePlaque btnControl = new DiscretePlaque() { Content = parameterDescription.parameterName };
                     btnControl.discreteNumber = pair.Key; // the key in the Dictionary remembered
                                                           
-                    ColorSource colorSourceForAParameter = new ColorSource();
+                    ColorSource colorSourceForAParameter = new ColorSource(); //в свойстве parameterState этого объекта храниться состояние дискрета вкл/выкл
+                    //опеределяющее цвет привязанного к нему Plaque, информационной таблички-кнопки.
                     parameterDescription.colorBinding.Source = colorSourceForAParameter;
                     parameterDescription.colorBinding.Converter = colorSourceForAParameter;
 
@@ -85,19 +87,20 @@ namespace ScullFurnaces_32
             //Устанаваливаем номер вкладки на окне из сохранённого значения, он будет обновлятся далее
             //автоматически через привязку BINDING к номеру вкладки в XAML окна
 
-            scull_Furnaces_Main_Window._typeOfParameters.PropertyChanged += rememberThePageWithParameters;
+            scull_Furnaces_Main_Window._typeOfParameters.PropertyChanged += SelectThePageWithParameters;
             scull_Furnaces_Main_Window._typeOfParameters.theNumberOfTab = mySettings.SelectedIndex;
+            TimeMover.numberOfSecond = 0;
 
-            TimeMover.numberOfSecond = 1; //Начинаем просмотр дискретов с 1 секунды!
         }
-        void rememberThePageWithParameters(object o, PropertyChangedEventArgs a)
+        void SelectThePageWithParameters(object o, PropertyChangedEventArgs a)
         {
+            scull_Furnaces_Main_Window.setParameterValueOnTheTab(new AlarmEventArgs() { TicksToAlarm = scull_Furnaces_Main_Window.momentOfTime.clockWatch.Ticks });
             scull_Furnaces_Main_Window.Background = chooseTheColorScheme(scull_Furnaces_Main_Window._typeOfParameters.theNumberOfTab);
             mySettings.SelectedIndex = scull_Furnaces_Main_Window._typeOfParameters.theNumberOfTab;
             mySettings.Save();
 
         }
-        //Установить связь между таймером и окошком для отображенеи
+        
         void rememberTheChosenFileName(object o, PropertyChangedEventArgs a)
         {
             mySettings.FileName = scull_Furnaces_Main_Window._remembranceOfFileName.fileName;

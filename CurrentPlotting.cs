@@ -107,36 +107,6 @@ partial class Scull_Furnaces_Main_Window
 			axisX_path.Stroke = Brushes.Black;
 			axisX_path.Data = axisX;
 			
-			
-            /*Make the X axis.*/
-            // GeometryGroup axis_X_geom = new GeometryGroup();
-			
-            // axis_X_geom.Children.Add(new LineGeometry(new Point(xmin, ymax), new Point(xmax, ymax)));
-			
-            // for (double x = xmin + step; x <= xmax ; x += step)
-            // {
-				
-				// if((x-xmin)/step%6 == 0)
-                // axis_X_geom.Children.Add(new LineGeometry
-				// (
-                    // new Point(x, ymax - dashTickLength),
-                    // new Point(x, ymax))
-				// );
-				// else
-                // axis_X_geom.Children.Add(new LineGeometry
-				// (
-                    // new Point(x, ymax - dashTickLength / 2),
-                    // new Point(x, ymax))
-				// );
-					
-            // }
-
-            // Path axis_X_path = new Path();
-            // axis_X_path.StrokeThickness = 1;
-            // axis_X_path.Stroke = Brushes.Black;
-            // axis_X_path.Data = axis_X_geom;
-            
-            // canGraph.Children.Add(axis_X_path);
 
             // Make the Y ayis.
            axisY = new GeometryGroup();

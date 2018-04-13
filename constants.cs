@@ -246,10 +246,10 @@ public static Dictionary<int,ParameterAllValues> ParameterData = new Dictionary<
 };
 public static Dictionary<int, TabData> TabControlData = new Dictionary<int, TabData>()
 {
-    [0]=new TabData {parameterName=ParameterName.Напряжение_дуги,parameterNameToDisplay="Напряжение (вольт)" },
-    [1]=new TabData { parameterName=ParameterName.Ток_общ,parameterNameToDisplay="Ток (КА)"},
-    [2]=new TabData { parameterName=ParameterName.Вакуум,parameterNameToDisplay="Глубина вакуума"},
-    [3]=new TabData { parameterName = ParameterName.Расход_воды, parameterNameToDisplay = "Расход воды"},
-    [4] = new TabData { parameterName = ParameterName.Empty1, parameterNameToDisplay = "" }
+    [0]=new TabData {parameterName=ParameterName.Напряжение_дуги, parameterType = ParameterType.аналоговый, parameterNameToDisplay ="Напряжение (вольт)" },
+    [1]=new TabData { parameterName=ParameterName.Ток_общ, parameterType = ParameterType.аналоговый,parameterNameToDisplay = "Ток (КА)"},
+    [2]=new TabData { parameterName=ParameterName.Вакуум, parameterType = ParameterType.аналоговый, parameterNameToDisplay ="Глубина вакуума"},
+    [3]=new TabData { parameterName = ParameterName.Расход_воды, parameterType = ParameterType.аналоговый, parameterNameToDisplay = "Расход воды"},
+    [4] = new TabData { parameterType = ParameterType.дискретный, parameterNameToDisplay = "" }
 };
 }	

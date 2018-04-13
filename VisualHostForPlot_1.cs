@@ -31,7 +31,7 @@ class VisualHostForPlot_1:FrameworkElement
 		//const double dashTickLength = 10;
 		double xmin = rectBounds.X;
 		double xmax = rectBounds.Width;
-		double ymin = rectBounds.X;
+		double ymin = rectBounds.Y;
 		double ymax = rectBounds.Height;
 		double LowerLimitForCurrentOnYAxis = 0;
 		double UpperLimitForCurrentOnYAxis = Convert.ToDouble(scull_Furnaces_Main_Window.maxValueForCurrentOnYAxis.Text);
@@ -48,13 +48,8 @@ class VisualHostForPlot_1:FrameworkElement
 		xmin,xmax,
 		ymin,ymax
 		);
-		// double dotsPerSecond = (xmax - xmin)/SecondsInADay;
-		// int intSecondsPerDot = (int)(SecondsInADay/(xmax - xmin));
-		double dotsPerSecond = (xmax - xmin)/(UpperLimitForTimeOnXAxis-LowerLimitForTimeOnXAxis);
 		int intSecondsPerDot = (int)((UpperLimitForTimeOnXAxis-LowerLimitForCurrentOnYAxis)/(xmax - xmin));
 		
-		double dotsPerVolt = UpperLimitForCurrentOnYAxis*step/UpperLimitForCurrentOnYAxis;
-		dotsPerVolt = (ymax-ymin)/(UpperLimitForCurrentOnYAxis - LowerLimitForCurrentOnYAxis);
 		DrawingVisual drawingVisual = new DrawingVisual();
 		DrawingContext drawingContext = drawingVisual.RenderOpen();
 		Pen pen = new Pen(Brushes.Blue,1.0);

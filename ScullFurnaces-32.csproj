@@ -62,6 +62,7 @@
     <Compile Include="CurrentPlotting.cs" />
     <Compile Include="parameter.cs" />
     <Compile Include="remembrance_of_fileName.cs" />
+    <Compile Include="roaming_parameters.cs" />
     <Compile Include="roaming_discretes.cs" />
     <Compile Include="TabControlEx.cs" />
     <Compile Include="TabData.cs" />

@@ -16,7 +16,6 @@ C:\Endeavours\ScullFurnaces-32\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Endeavours\ScullFurnaces-32\obj\Debug\Clock.baml
 C:\Endeavours\ScullFurnaces-32\obj\Debug\App.baml
 C:\Endeavours\ScullFurnaces-32\obj\Debug\ScullFurnaces-32.csprojResolveAssemblyReference.cache
-C:\Endeavours\scull-furnaces-32\obj\Debug\ScullFurnaces-32.csprojResolveAssemblyReference.cache
 C:\Endeavours\scull-furnaces-32\obj\Debug\Clock.g.cs
 C:\Endeavours\scull-furnaces-32\obj\Debug\Scull_Furnaces_Main_Window.g.cs
 C:\Endeavours\scull-furnaces-32\obj\Debug\App.g.cs
@@ -34,3 +33,4 @@ C:\Endeavours\scull-furnaces-32\obj\Debug\ScullFurnaces-32.exe
 C:\Endeavours\scull-furnaces-32\obj\Debug\ScullFurnaces-32.pdb
 C:\Endeavours\scull-furnaces-32\ScullFurnaces-32.exe
 C:\Endeavours\scull-furnaces-32\ScullFurnaces-32.pdb
+C:\Endeavours\scull-furnaces-32\obj\Debug\ScullFurnaces-32.csprojResolveAssemblyReference.cache
