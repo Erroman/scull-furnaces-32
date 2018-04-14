@@ -1,10 +1,13 @@
-﻿using static Constants;
+﻿using System;
+using static Constants;
 namespace ScullFurnaces_32
 {
    partial class Scull_Furnaces_Main_Window
     {
         public void setParameterValueOnTheTab(AlarmEventArgs aea)
         {
+            TickParamsAll unpackedParameters = app.unpackedParameters;
+            short intAssembled;
             TabData tab = TabControlData[_typeOfParameters.theNumberOfTab];
             
             if ((tab.parameterType)==(ParameterType.дискретный))
@@ -13,23 +16,34 @@ namespace ScullFurnaces_32
             //устанавливается значение аналогового параметра
             //при выборе вкладки или изменении значения таймера
             {
-                switch (tab.parameterName)
+                int iParam = (int)tab.parameterName + aea.TicksToAlarm * Constants.ParamsBlockLengthInBytes;
+                System.Console.WriteLine("iParam = {0}",iParam);
+                intAssembled = BitConverter.ToInt16(unpackedParameters.inflatedParameters, iParam);
+                //Globals.swapBytes(ref intAssembled);
+                string unitOfMeasure;
+                switch (Constants.ParameterData[(int)(tab.parameterName)].parameterUnit)
                 {
-                    case ParameterName.Напряжение_дуги:
-                        instantParameterValue.Content = "Напруга (В)";
+                    case ParameterUnit._:
+                        unitOfMeasure = "";
                         break;
-                    case ParameterName.Ток_общ:
-                        instantParameterValue.Content = "Ток (А)";
+                    case ParameterUnit.м3_ч:
+                        unitOfMeasure = "м3/ч";
                         break;
-                    case ParameterName.Вакуум:
-                        instantParameterValue.Content = "Вакуум (?)";
-                        break;
-                    case ParameterName.Расход_воды:
-                        instantParameterValue.Content = "Расход воды (м3/сек)";
+                    case ParameterUnit.мм_рт_ст:
+                        if (intAssembled < 0)
+                        {
+                            unitOfMeasure = "мм рт.ст";
+                            intAssembled &= 0x777;
+                        }
+                        else
+                            unitOfMeasure = "мк";
                         break;
                     default:
+                        unitOfMeasure = "";
                         break;
-                }                     
+                }
+
+                instantParameterValue.Content = String.Format("{0} "+ unitOfMeasure,(float)intAssembled / 10);
             }
         }
     }
