@@ -69,6 +69,7 @@
     <Compile Include="TransformWorldToScreen.cs" />
     <Compile Include="typeofparameters.cs" />
     <Compile Include="VacuumPlotting.cs" />
+    <Compile Include="VerticalLinePointer.cs" />
     <Compile Include="VisualHostForPlot.cs" />
     <Compile Include="VisualHostForPlot_1.cs" />
     <Compile Include="VoltagePlotting.cs" />

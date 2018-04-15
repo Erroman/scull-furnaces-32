@@ -116,9 +116,6 @@ namespace ScullFurnaces_32
             currentPlotting(ParameterName.Ток_общ, currentGraph, null, aea);
 
         }
- 
-
-
     }
 
 }

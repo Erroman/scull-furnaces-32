@@ -5,7 +5,7 @@ using System.Windows.Media;
 using System.Windows.Threading;
 using static Constants;
 using static System.Console;
-using static TransformWorldToScreen;
+using static TransformWorldToScreen; 
 using System.Windows.Shapes;
 namespace ScullFurnaces_32 { 
 partial class Scull_Furnaces_Main_Window
