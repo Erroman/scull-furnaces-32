@@ -72,7 +72,7 @@
                     </Grid.ColumnDefinitions>
                     <TextBox x:Name="maxValueForCurrentOnYAxis" Text="{Binding UpperLimitForCurrent, Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,0,0" LostFocus="setMaxYValue" KeyDown="setMaxYValue" />
                     <Canvas Grid.Row = "0" Grid.Column = "1" Name="currentGraph" Background="White" Loaded = "currentGraph_Loaded"
-						VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.ColumnSpan="2" MouseDown="putTheVerticalLine"/>
+						VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.ColumnSpan="2" MouseDown="drawTheVerticalLine" MouseMove="drawTheVerticalLine"/>
                     <DockPanel Grid.Row="1" Grid.Column="1"  LastChildFill  ="False" Grid.ColumnSpan="2">
                         <local:Clock x:Name="begTimeOnXAxis" DockPanel.Dock ="Left"/>
                         <local:Clock x:Name="endTimeOnXAxis" DockPanel.Dock ="Right"/>

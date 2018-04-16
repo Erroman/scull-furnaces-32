@@ -4,17 +4,17 @@
 exe
 C#
 .cs
-C:\Endeavours\scull-furnaces-32\obj\Debug\
+C:\Endeavours\Scull-furnaces-32\obj\Release\
 ScullFurnaces_32
 none
 false
-DEBUG;TRACE
-C:\Endeavours\scull-furnaces-32\App.xaml
+TRACE
+C:\Endeavours\Scull-furnaces-32\App.xaml
 21660884503
 
 24979208234
 14-293586328
 Clock.xaml;Scull_Furnaces_Main_Window.xaml;
 
-False
+True
 

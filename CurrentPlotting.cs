@@ -10,11 +10,12 @@ using System.Windows.Shapes;
 namespace ScullFurnaces_32 { 
 partial class Scull_Furnaces_Main_Window
  {
-	 private void currentPlotting(ParameterName parameterName,Canvas canGraph,params AlarmEventArgs[] aea)
+        const double marginX = 25;
+        const double marginY = 25;
+
+        private void currentPlotting(ParameterName parameterName,Canvas canGraph,params AlarmEventArgs[] aea)
 	 {
  		const double dashTickLength = 10;
-		const double marginX = 25;
-		const double marginY = 25;
 		const double dashHourTickLength = 10;
 		const double dashHalfHourTickLength = 7;
 		const double dashMinuteTickLength = 5;
