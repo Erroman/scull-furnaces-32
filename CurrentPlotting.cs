@@ -10,6 +10,7 @@ using System.Windows.Shapes;
 namespace ScullFurnaces_32 { 
 partial class Scull_Furnaces_Main_Window
  {
+        public Canvas theCanvasToDraw;
         const double marginX = 25;
         const double marginY = 25;
 
@@ -23,7 +24,8 @@ partial class Scull_Furnaces_Main_Window
 		double LowerLimitForTimeOnXAxis;
 		double UpperLimitForTimeOnXAxis;
 		double LowerLimitForCurrentOnYAxis;
-		double UpperLimitForCurrentOnYAxis; 
+		double UpperLimitForCurrentOnYAxis;
+        theCanvasToDraw = canGraph;
 		GeometryGroup axisX = new GeometryGroup();
 		GeometryGroup axisY = new GeometryGroup();
 

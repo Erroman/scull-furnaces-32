@@ -19,8 +19,15 @@ namespace ScullFurnaces_32
         {
             if (e.LeftButton == MouseButtonState.Pressed)
             { 
-                LineGeometry myLineGeometry = new LineGeometry();
                 Point clickPoint = e.GetPosition((Canvas)sender);
+                doTheLineDrawing(sender, clickPoint);
+                momentOfTime.clockWatch.Ticks = (int)DtoW(clickPoint).X;
+            }
+
+        }
+        void doTheLineDrawing(object sender, Point clickPoint)
+        {
+                LineGeometry myLineGeometry = new LineGeometry();
                 myLineGeometry.StartPoint = new Point(clickPoint.X, ((Canvas)sender).ActualHeight-marginY);
                 myLineGeometry.EndPoint = new Point(clickPoint.X, 0);
 
@@ -31,8 +38,6 @@ namespace ScullFurnaces_32
                 if(theYLine!=null) ((Canvas)sender).Children.Remove(theYLine);
                 ((Canvas)sender).Children.Add(myPath);
                 theYLine = myPath;
-                momentOfTime.clockWatch.Ticks = (int)DtoW(clickPoint).X;
-            }
 
         }
         void dragTheVerticalLine(object sender,MouseEventArgs e)
