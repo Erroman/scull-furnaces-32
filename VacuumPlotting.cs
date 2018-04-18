@@ -10,7 +10,6 @@ partial class Scull_Furnaces_Main_Window
  {
 	 private void vacuumPlotting(ParameterName parameterName,Canvas canGraph)
 	 {
- 		TickParamsAll unpackedParameters = app.unpackedParameters; //данные для построения графика
 		Rect rectBounds = new Rect(0,0,0,0); //структура для хранения координат внутри части окна, где будет рисоваться график
 		this.Dispatcher.BeginInvoke(DispatcherPriority.Background, new DispatcherOperationCallback(delegate(Object state)
 		{

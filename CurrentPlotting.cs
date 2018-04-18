@@ -10,27 +10,14 @@ using System.Windows.Shapes;
 namespace ScullFurnaces_32 { 
 partial class Scull_Furnaces_Main_Window
  {
-        public Canvas theCanvasToDraw;
-        const double marginX = 25;
-        const double marginY = 25;
-
-        private void currentPlotting(ParameterName parameterName,Canvas canGraph,params AlarmEventArgs[] aea)
+     private void currentPlotting(ParameterName parameterName,Canvas canGraph,params AlarmEventArgs[] aea)
 	 {
- 		const double dashTickLength = 10;
-		const double dashHourTickLength = 10;
-		const double dashHalfHourTickLength = 7;
-		const double dashMinuteTickLength = 5;
-		const double axisLineThickness = 1;
-		double LowerLimitForTimeOnXAxis;
-		double UpperLimitForTimeOnXAxis;
-		double LowerLimitForCurrentOnYAxis;
+ 		double LowerLimitForCurrentOnYAxis;
 		double UpperLimitForCurrentOnYAxis;
         theCanvasToDraw = canGraph;
 		GeometryGroup axisX = new GeometryGroup();
 		GeometryGroup axisY = new GeometryGroup();
 
-
-		TickParamsAll unpackedParameters = app.unpackedParameters; //данные для построения графика
 		Rect rectGraphWithAxesBounds = new Rect(0,0,0,0); //структура для хранения координат внутри части окна, где будет рисоваться график с осями координат,
 		//обозначаними осей, числоввыми значаниями и полями для масштабирования осей
 		Rect rectGraphBounds = new Rect(0,0,0,0); //структура для хранения координат внутри части окна, где будет рисоваться только линия графика 

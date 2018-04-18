@@ -52,12 +52,29 @@
         <local:TabControlEx x:Name="tabControl" Grid.Row="0" SelectedIndex = "{Binding Path=theNumberOfTab, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             <TabItem Header="Напряжение дуги">
 
-                <Border Name = "border" BorderThickness="10" BorderBrush="GreenYellow">
+                <!--Border Name = "border" BorderThickness="10" BorderBrush="GreenYellow">
                     <Canvas Name="voltageGraph" Background="White" Loaded = "voltageGraph_Loaded"
 						VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                     </Canvas>
-                </Border>
-
+                </-->
+                <Grid  ShowGridLines="True">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height ="25*"/>
+                        <RowDefinition Height ="2*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width ="65*"/>
+                        <ColumnDefinition Width ="57*"/>
+                        <ColumnDefinition Width="1238*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="maxValueForVoltageOnYAxis" Text="{Binding UpperLimitForVoltage, Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,0,0" LostFocus="setMaxYValueForGraphOfVoltage" KeyDown="setMaxYValueForGraphOfVoltage" />
+                    <Canvas Grid.Row = "0" Grid.Column = "1" Name="voltageGraph" Background="White" Loaded = "voltageGraph_Loaded"
+						VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.ColumnSpan="2" MouseDown="drawTheVerticalLine" MouseMove="drawTheVerticalLine"/>
+                    <DockPanel Grid.Row="1" Grid.Column="1"  LastChildFill  ="False" Grid.ColumnSpan="2">
+                        <local:Clock x:Name="begTimeForVoltageOnXAxis" DockPanel.Dock ="Left"/>
+                        <local:Clock x:Name="endTimeForVoltageOnXAxis" DockPanel.Dock ="Right"/>
+                    </DockPanel>
+                </Grid>
             </TabItem>
             <TabItem Header="Ток">
                 <Grid  ShowGridLines="True">
@@ -70,7 +87,7 @@
                         <ColumnDefinition Width ="57*"/>
                         <ColumnDefinition Width="1238*"/>
                     </Grid.ColumnDefinitions>
-                    <TextBox x:Name="maxValueForCurrentOnYAxis" Text="{Binding UpperLimitForCurrent, Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,0,0" LostFocus="setMaxYValue" KeyDown="setMaxYValue" />
+                    <TextBox x:Name="maxValueForCurrentOnYAxis" Text="{Binding UpperLimitForCurrent, Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,0,0" LostFocus="setMaxYValueForGraphOfCurrent" KeyDown="setMaxYValueForGraphOfCurrent" />
                     <Canvas Grid.Row = "0" Grid.Column = "1" Name="currentGraph" Background="White" Loaded = "currentGraph_Loaded"
 						VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.ColumnSpan="2" MouseDown="drawTheVerticalLine" MouseMove="drawTheVerticalLine"/>
                     <DockPanel Grid.Row="1" Grid.Column="1"  LastChildFill  ="False" Grid.ColumnSpan="2">
@@ -145,7 +162,7 @@
             </Grid>
 
 
-            <Label Content="{Binding Path=theNameOfParameter, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1"  FontSize="16" Background="Black"  Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            <Label x:Name="instantParameterName" Content="{Binding Path=theNameOfParameter, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1"  FontSize="16" Background="Black"  Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" />
             <Label x:Name="instantParameterValue" Content="{Binding Path=theValueOfParameter, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1"  FontSize="16" Background="Black"  Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="131,9,135,11" Grid.Row="1" />
 
             <TextBlock Grid.Column="2" Foreground="White" Text="{Binding Source = {StaticResource RememberedfileName},Path=FileName,Mode = OneWay}" x:Name ="filePathTextBox" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16"/>

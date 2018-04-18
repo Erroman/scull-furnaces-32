@@ -19,7 +19,7 @@ namespace ScullFurnaces_32
     partial class Scull_Furnaces_Main_Window
     {
 
-        Scull_Furnaces_AppMain_Class app = (Scull_Furnaces_AppMain_Class)Application.Current;
+        static Scull_Furnaces_AppMain_Class app = (Scull_Furnaces_AppMain_Class)Application.Current;
         public TypeOfParameters _typeOfParameters = new TypeOfParameters();
         public RemembranceOfFileName _remembranceOfFileName = new RemembranceOfFileName();
 
@@ -89,7 +89,20 @@ namespace ScullFurnaces_32
         {
             waterPlotting(ParameterName.Расход_воды, waterGraph);
         }
-        private void setMaxYValue(object sender, EventArgs e)
+        private void setMaxYValueForGraphOfVoltage(object sender, EventArgs e)
+        {
+            if (e is KeyEventArgs && (e as KeyEventArgs).Key != Key.Return) return;
+
+            WriteLine("maxValueForVoltageOnYAxis = {0}", maxValueForVoltageOnYAxis);
+            if (app.mySettings.UpperLimitForVoltage != maxValueForVoltageOnYAxis.Text)
+            {
+                app.mySettings.UpperLimitForVoltage= maxValueForVoltageOnYAxis.Text;
+                app.mySettings.Save();
+                //currentGraph.Children.Clear();
+                //currentPlotting(ParameterName.Ток_общ, currentGraph);
+            }
+        }
+        private void setMaxYValueForGraphOfCurrent(object sender, EventArgs e)
         {
             if (e is KeyEventArgs && (e as KeyEventArgs).Key != Key.Return) return;
 

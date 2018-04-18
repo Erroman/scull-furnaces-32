@@ -48,6 +48,7 @@ namespace ScullFurnaces_32
 
             //scull_Furnaces_Main_Window.maxValueForCurrentOnYAxis.Text = mySettings.UpperLimitForCurrent;
             scull_Furnaces_Main_Window.maxValueForCurrentOnYAxis.DataContext = mySettings;
+            scull_Furnaces_Main_Window.maxValueForVoltageOnYAxis.DataContext = mySettings;
 
             scull_Furnaces_Main_Window.begTimeOnXAxis.clockWatch.Alarm_On = false; //не обнавлять график при начальной установке диапазона времени для отображения 
             scull_Furnaces_Main_Window.endTimeOnXAxis.clockWatch.Alarm_On = false; //не обнавлять график при начальной установке диапазона времени для отображения 
@@ -58,7 +59,7 @@ namespace ScullFurnaces_32
             scull_Furnaces_Main_Window.momentOfTime.clockWatch.AlarmProcedure += scull_Furnaces_Main_Window.setParameterValueOnTheTab;
             scull_Furnaces_Main_Window.begTimeOnXAxis.clockWatch.Alarm_On = true;   //обновлять график при изменении нижней границы диапазона времени	
             scull_Furnaces_Main_Window.endTimeOnXAxis.clockWatch.Alarm_On = true; //обновлять график при изменении верхней границы диапазона времени
-        
+            scull_Furnaces_Main_Window.unpackedParameters = unpackedParameters;
             scull_Furnaces_Main_Window.WindowStyle = WindowStyle.ToolWindow;
             scull_Furnaces_Main_Window.Show();
             //Создаём табло с набором дискретных параметров и привязкой каждого из них к свойству parameterState
@@ -179,6 +180,21 @@ namespace ScullFurnaces_32
                 this["FileName"] = (string)value;
             }
         }
+        [UserScopedSetting()]
+        [DefaultSettingValue("100")]
+        public string UpperLimitForVoltage
+        {
+            get
+            {
+                return ((string)this["UpperLimitForVoltage"]);
+            }
+            set
+            {
+                this["UpperLimitForVoltage"] = (string)value;
+                //			this.Save();
+            }
+        }
+
         [UserScopedSetting()]
         [DefaultSettingValue("100")]
         public string UpperLimitForCurrent

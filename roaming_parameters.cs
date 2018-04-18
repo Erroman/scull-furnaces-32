@@ -13,7 +13,11 @@ namespace ScullFurnaces_32
             TabData tab = TabControlData[_typeOfParameters.theNumberOfTab];
 
             if ((tab.parameterType) == (ParameterType.дискретный))
+            {
                 TimeMover.numberOfSecond = aea.TicksToAlarm;
+                instantParameterValue.Visibility = Visibility.Collapsed;
+                instantParameterName.Visibility = Visibility.Collapsed;
+            }
             else
             //устанавливается значение аналогового параметра
             //при выборе вкладки или изменении значения таймера
@@ -45,6 +49,8 @@ namespace ScullFurnaces_32
                         break;
                 }
                 if (theCanvasToDraw != null) doTheLineDrawing(theCanvasToDraw, WtoD(new Point(aea.TicksToAlarm, 0)));
+                instantParameterValue.Visibility = Visibility.Visible;
+                instantParameterName.Visibility = Visibility.Visible;
                 instantParameterValue.Content = String.Format("{0} " + unitOfMeasure, (float)intAssembled / 10);
             }
         }

@@ -61,6 +61,7 @@
     <Compile Include="Clock.xaml.cs" />
     <Compile Include="CurrentPlotting.cs" />
     <Compile Include="parameter.cs" />
+    <Compile Include="PlottingDetails.cs" />
     <Compile Include="remembrance_of_fileName.cs" />
     <Compile Include="roaming_parameters.cs" />
     <Compile Include="roaming_discretes.cs" />

@@ -40,12 +40,5 @@ namespace ScullFurnaces_32
                 theYLine = myPath;
 
         }
-        void dragTheVerticalLine(object sender,MouseEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                WriteLine("Drawing mouse!");
-            }
-        }
     }
 }

@@ -4,15 +4,15 @@
 exe
 C#
 .cs
-C:\Endeavours\Scull-furnaces-32\obj\Debug\
+C:\Endeavours\scull-furnaces-32\obj\Debug\
 ScullFurnaces_32
 none
 false
 DEBUG;TRACE
-C:\Endeavours\Scull-furnaces-32\App.xaml
+C:\Endeavours\scull-furnaces-32\App.xaml
 21660884503
 
-24979208234
+25-599434943
 14-293586328
 Clock.xaml;Scull_Furnaces_Main_Window.xaml;
 
