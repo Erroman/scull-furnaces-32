@@ -73,6 +73,7 @@
     <Compile Include="VerticalLinePointer.cs" />
     <Compile Include="VisualHostForPlot.cs" />
     <Compile Include="VisualHostForPlot_1.cs" />
+    <Compile Include="VisualHostForVoltagePlot.cs" />
     <Compile Include="VoltagePlotting.cs" />
     <Compile Include="WaterPlotting.cs" />
     <Page Include="Clock.xaml">

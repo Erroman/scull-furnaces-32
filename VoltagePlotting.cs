@@ -4,198 +4,195 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Threading;
 using static Constants;
+using static System.Console;
+using static TransformWorldToScreen;
 using System.Windows.Shapes;
 namespace ScullFurnaces_32 { 
 partial class Scull_Furnaces_Main_Window
  {
-	 private void voltagePlotting(ParameterName parameterName,Canvas canGraph)
-	 {
+     private void voltagePlotting(ParameterName parameterName,Canvas canGraph,params AlarmEventArgs[] aea)
+     {
+        double LowerLimitForVoltageOnYAxis;
+        double UpperLimitForVoltageOnYAxis;
         theCanvasToDraw = canGraph;
-        Rect rectBounds = new Rect(0,0,0,0); //структура для хранения координат внутри части окна, где будет рисоваться график
-		this.Dispatcher.BeginInvoke(DispatcherPriority.Background, new DispatcherOperationCallback(delegate(Object state)
+        GeometryGroup axisX = new GeometryGroup();
+        GeometryGroup axisY = new GeometryGroup();
+
+        Rect rectGraphWithAxesBounds = new Rect(0, 0, 0, 0); //структура для хранения координат внутри части окна, где будет рисоваться график с осями координат,
+                                                                //обозначаними осей, числоввыми значаниями и полями для масштабирования осей
+        Rect rectGraphBounds = new Rect(0, 0, 0, 0); //структура для хранения координат внутри части окна, где будет рисоваться только линия графика 
+        this.Dispatcher.BeginInvoke(DispatcherPriority.Background, new DispatcherOperationCallback(delegate(Object state)
 		{
-			
-			if(canGraph.ActualWidth==0)return null;
+
+            if (canGraph.ActualWidth==0)return null;
             canGraph.Children.Clear();
-			rectBounds.Width=canGraph.ActualWidth;
-			rectBounds.Height=canGraph.ActualHeight;
-			
-		
-		const double dashTickLength = 10;
-		const double marginX = 10;
-		const double marginY = 10;
+            rectGraphWithAxesBounds.Width=canGraph.ActualWidth;
+            rectGraphWithAxesBounds.Height=canGraph.ActualHeight;
+
             double xmin = marginX;
-            double xmax = rectBounds.Width - marginX;
+            double xmax = rectGraphWithAxesBounds.Width - marginX;
             double ymin = marginY;
-            double ymax = rectBounds.Height-marginY;
+            double ymax = rectGraphWithAxesBounds.Height - marginY;
+            //вызов может быть 1) с часов, 2) при начальном запуске программы, 3) при смене файла для отображения параметров
+            switch (aea.Length)
+            {
+                case 1:
+                    LowerLimitForTimeOnXAxis = aea[0].TicksToAlarm;                                     //изиенение нижней границы интервала времени
+                    UpperLimitForTimeOnXAxis = Int32.Parse(this.endTimeOnXAxis.Ticks.Text);
+                    break;
+                case 2:
+                    LowerLimitForTimeOnXAxis = Int32.Parse(this.begTimeOnXAxis.Ticks.Text);
+                    UpperLimitForTimeOnXAxis = aea[1].TicksToAlarm;                                     //изиенение верхней границы интервала времени
+                    break;
+                default:
+                    LowerLimitForTimeOnXAxis = Int32.Parse(this.begTimeOnXAxis.Ticks.Text); //интервал времени берётся непосредственно с часов,
+                    UpperLimitForTimeOnXAxis = Int32.Parse(this.endTimeOnXAxis.Ticks.Text); // вызов пришёл при выполнении условий 2) или 3)
+                    break;
+            }
+            LowerLimitForVoltageOnYAxis = 0;
+            UpperLimitForVoltageOnYAxis = Int32.Parse(maxValueForCurrentOnYAxis.Text);
+
+            PrepareTransformations(
+            LowerLimitForTimeOnXAxis, UpperLimitForTimeOnXAxis, LowerLimitForVoltageOnYAxis, UpperLimitForVoltageOnYAxis,
+            xmin, xmax, ymin, ymax
+            );
+            rectGraphBounds.X = xmin;
+            rectGraphBounds.Y = ymin;
+            rectGraphBounds.Width = xmax;
+            rectGraphBounds.Height = ymax;
             double step = Math.Round((xmax - xmin)/(24*6));
 			
 			double dotsPerSecond = (xmax - xmin)/SecondsInADay;
 			int intSecondsPerDot = (int)(SecondsInADay/(xmax - xmin));
 			double dotsPerVolt = 100*step/100;
 
+            axisX.Children.Add(new LineGeometry(WtoD(new Point(LowerLimitForTimeOnXAxis, LowerLimitForVoltageOnYAxis)), WtoD(new Point(UpperLimitForTimeOnXAxis, LowerLimitForVoltageOnYAxis))));
+            //Расставляем часовые деления на оси X
+            //Расставляем получасовые деления на оси X
+            //Расставляем 10-минутные деления на оси X
+            //Для крупного масштаба расставляем 5 - минутные
+            //и минутные деления.
+            //Point onX_axis;
+            //Point overX_axis;
 
-            // Make the X axis.
-            GeometryGroup axis_X_geom = new GeometryGroup();
-			
-            axis_X_geom.Children.Add(new LineGeometry(new Point(xmin, ymax), new Point(xmax, ymax)));
-			
-            for (double x = xmin + step; x <= xmax ; x += step)
+            Action<string, Point, HorizontalAlignment, VerticalAlignment> PutLabel = DrawText; ;
+            PutTimeTicks(3600, dashHourTickLength, PutLabel);
+            PutLabel = null;
+            PutTimeTicks(1800, dashHalfHourTickLength, PutLabel);
+            PutTimeTicks(600, dashMinuteTickLength, PutLabel);
+            if ((UpperLimitForTimeOnXAxis - LowerLimitForTimeOnXAxis) / 3600 <= 2)
             {
-				
-				if((x-xmin)/step%6 == 0)
-                axis_X_geom.Children.Add(new LineGeometry
-				(
-                    new Point(x, ymax - dashTickLength),
-                    new Point(x, ymax))
-				);
-				else
-                axis_X_geom.Children.Add(new LineGeometry
-				(
-                    new Point(x, ymax - dashTickLength / 2),
-                    new Point(x, ymax))
-				);
-					
+                PutTimeTicks(300, dashMinuteTickLength, PutLabel);
+                PutTimeTicks(60, dashMinuteTickLength, PutLabel);
+
             }
 
-            Path axis_X_path = new Path();
-            axis_X_path.StrokeThickness = 1;
-            axis_X_path.Stroke = Brushes.Black;
-            axis_X_path.Data = axis_X_geom;
-            
-            canGraph.Children.Add(axis_X_path);
+            Path axisX_path = new Path();
+            axisX_path.StrokeThickness = axisLineThickness;
+            axisX_path.Stroke = Brushes.Black;
+            axisX_path.Data = axisX;
+
 
             // Make the Y ayis.
-            GeometryGroup axis_Y_geom = new GeometryGroup();
-			
-           axis_Y_geom.Children.Add(new LineGeometry(new Point(xmin, ymin), new Point(xmin, ymax)));
-			
+            axisY = new GeometryGroup();
+
+            axisY.Children.Add(new LineGeometry(new Point(xmin, ymin), new Point(xmin, ymax)));
+
             for (double y = ymax; y >= ymin; y -= step)
             {
-				
-				if(Math.Round((ymax - y)/step)%10 == 0)
-				axis_Y_geom.Children.Add(new LineGeometry
-				(
-							new Point(xmin, y),
-							new Point(xmin + 2*dashTickLength, y))
-				);
-				else
-				if(Math.Round((ymax - y)/step)%5 == 0)
-				axis_Y_geom.Children.Add(new LineGeometry
-				(
-							new Point(xmin, y),
-							new Point(xmin + dashTickLength, y))
-				);
-				else
-				axis_Y_geom.Children.Add(new LineGeometry
-				(
-							new Point(xmin, y),
-							new Point(xmin + dashTickLength / 2, y))
-				);
-					
-			}	
 
-            Path axis_Y_path = new Path();
-            axis_Y_path.StrokeThickness = 1;
-            axis_Y_path.Stroke = Brushes.Black;
-            axis_Y_path.Data = axis_Y_geom;
+                if (Math.Round((ymax - y) / step) % 10 == 0)
+                    axisY.Children.Add(new LineGeometry
+                    (
+                                new Point(xmin, y),
+                                new Point(xmin + 2 * dashTickLength, y))
+                    );
+                else
+                if (Math.Round((ymax - y) / step) % 5 == 0)
+                    axisY.Children.Add(new LineGeometry
+                    (
+                                new Point(xmin, y),
+                                new Point(xmin + dashTickLength, y))
+                    );
+                else
+                    axisY.Children.Add(new LineGeometry
+                    (
+                                new Point(xmin, y),
+                                new Point(xmin + dashTickLength / 2, y))
+                    );
 
-            canGraph.Children.Add(axis_Y_path);
-			#if POLYLINE
-			//Значения для графика тока подтягиваются сюда.	
-			//Для рисования через Polyline
-			points = new PointCollection();	
+            }
 
-			int numSec = 0;
-			short    intAssembled;
-			double realValueOfFunction;
-			double peakAtInterval = 0;   //максимальное значение функции на интервале
-			double bottomAtInterval = Int32.MaxValue; //минимальное значение функции на интервале
-			Point begPoint = new Point(xmin,ymax);
-			Point endPoint = new Point(xmin,ymax);
-			bool theFirstDotInPair = true;
-			for(
-			int iParam = (int)parameterName/(Constants.ParameterData[(int)(parameterName)].parameterType == ParameterType.аналоговый ? 1:10)+(int)Globals.startOfParameterOutput.TotalSeconds*Constants.ParamsBlockLengthInBytes;     
-			iParam < unpackedParameters.inflatedParameters.Length;
-			iParam = iParam+Constants.ParamsBlockLengthInBytes)
-			{
-				
-				if(Constants.ParameterData[(int)(parameterName)].parameterType == ParameterType.аналоговый)
-				{
-					
-					intAssembled = BitConverter.ToInt16(unpackedParameters.inflatedParameters,iParam);
-					realValueOfFunction = (double)intAssembled/10;
-					switch(Constants.ParameterData[(int)(parameterName)].parameterUnit)
-						{
-							case ParameterUnit._:
-							unitOfMeasure="";
-							break;
-							case ParameterUnit.м3_ч:
-							unitOfMeasure="м3/ч";
-							break;
-							case ParameterUnit.мм_рт_ст:
-							if(intAssembled <0)
-							{	
-							unitOfMeasure="мм рт.ст";
-							intAssembled &= 0x777;
-							}
-							else
-							unitOfMeasure="мк";						
-							break;
+            Path axisY_path = new Path();
+            axisY_path.StrokeThickness = 1;
+            axisY_path.Stroke = Brushes.Black;
+            axisY_path.Data = axisY;
 
-						}
-				}		
-				else
-					throw new Exception();
-				//*
-				if(peakAtInterval < realValueOfFunction )peakAtInterval = realValueOfFunction;
-				if(bottomAtInterval > realValueOfFunction )bottomAtInterval = realValueOfFunction;
-				if(numSec%intSecondsPerDot==0)
-				{
-					//отмечать в графике МАКСИМАЛЬЕОЕ значение на интервале
-					//но надо отмечать и МИНИМАЛЬНОЕ !
-					if(!theFirstDotInPair)
-					{
-						points.Add( new Point(xmin +(numSec-1)*dotsPerSecond,ymax - dotsPerVolt*bottomAtInterval));
-						points.Add( new Point(xmin +(numSec)*dotsPerSecond,ymax - dotsPerVolt*peakAtInterval));
-						//points.Add( new Point(xmin +(numSec)*dotsPerSecond,ymax - dotsPerVolt*bottomAtInterval));
-						peakAtInterval = 0;
-						bottomAtInterval = Int32.MaxValue;
-						theFirstDotInPair = true;
-					}
-					else
-						theFirstDotInPair = false;
-				}
-/*				else 
-				if(numSec%intSecondsPerDot==(int)(intSecondsPerDot/2))
-				{
-					//отмечать в графике МАКСИМАЛЬЕОЕ значение на интервале
-					//но надо отмечать и МИНИМАЛЬНОЕ !
-					points.Add( new Point(xmin +(numSec)*dotsPerSecond,ymax - dotsPerVolt*bottomAtInterval));
-					bottomAtInterval = Int32.MaxValue;
-				} */
-				//*
-				/*endPoint = new Point(xmin +(numSec)*dotsPerSecond,ymax - dotsPerVolt*bottomAtInterval);
-				plotGeometry.Children.Add(new LineGeometry(begPoint,endPoint));
-				WriteLine("Dot number {0}",numSec );
-				endPoint = begPoint;
-				points.Add( new Point(xmin +(numSec++)*dotsPerSecond,ymax - dotsPerVolt*(double)intAssembled/10));*/
-				numSec++;		
-				
-			} 
-			Polyline polyline1 = new Polyline();
-			polyline1.StrokeThickness = 1;
-			polyline1.Stroke = Brushes.Red;
-			polyline1.Points = points;
-			canGraph.Children.Add(polyline1); 
-			
-			#else
-    		canGraph.Children.Add(new VisualHostForPlot(unpackedParameters,parameterName,rectBounds));
-			#endif
-			return null;
-		}), null);
+            canGraph.Children.Add(axisX_path);
+            canGraph.Children.Add(axisY_path);
 
-	}
+            canGraph.Children.Add(new VisualHostForVoltagePlot(unpackedParameters, parameterName, rectGraphBounds));
 
-}
+            return null;
+        }), null);
+            void PutTimeTicks(int IntervalInSeconds, double TickLength, Action<string, Point, HorizontalAlignment, VerticalAlignment> PutLabel)
+            {
+                Point onX_axis;
+                Point overX_axis;
+
+                for (double Dash = TickMeasure(LowerLimitForTimeOnXAxis); Dash < UpperLimitForTimeOnXAxis; Dash += IntervalInSeconds)
+                {
+                    onX_axis = WtoD(new Point(Dash, LowerLimitForVoltageOnYAxis));
+                    overX_axis = onX_axis;
+                    overX_axis.Y = overX_axis.Y - TickLength;
+                    axisX.Children.Add(new LineGeometry
+                  (
+                      onX_axis,
+                      overX_axis
+                  )
+                  );
+                    Point underX_axis = onX_axis;
+                    underX_axis.Y = overX_axis.Y;
+                    if (PutLabel != null)
+                    {
+                        PutLabel(((int)Dash / IntervalInSeconds).ToString(), underX_axis, HorizontalAlignment.Center, VerticalAlignment.Top);
+                    }
+
+                }
+                double TickMeasure(double timeInSeconds)
+                {
+                    return (((int)timeInSeconds / IntervalInSeconds) + ((timeInSeconds % IntervalInSeconds == 0) ? 0 : 1)) * IntervalInSeconds;
+                }
+            }
+
+            void DrawText(string text, Point location,
+                    HorizontalAlignment halign, VerticalAlignment valign)
+            {
+                // Make the label.
+                Label label = new Label();
+                label.Content = text;
+                canGraph.Children.Add(label);
+
+                // Position the label.
+                label.Measure(new Size(double.MaxValue, double.MaxValue));
+
+                double x = location.X;
+                if (halign == HorizontalAlignment.Center)
+                    x -= label.DesiredSize.Width / 2;
+                else if (halign == HorizontalAlignment.Right)
+                    x -= label.DesiredSize.Width;
+                Canvas.SetLeft(label, x);
+
+                double y = location.Y;
+                if (valign == VerticalAlignment.Center)
+                    y += label.DesiredSize.Height / 2;
+                else if (valign == VerticalAlignment.Bottom)
+                    y += label.DesiredSize.Height;
+                else y += label.DesiredSize.Height / 6;
+                Canvas.SetTop(label, y);
+            }
+
+        }
+
+   }
 } 

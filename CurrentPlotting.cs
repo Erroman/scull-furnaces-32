@@ -19,7 +19,7 @@ partial class Scull_Furnaces_Main_Window
 		GeometryGroup axisY = new GeometryGroup();
 
 		Rect rectGraphWithAxesBounds = new Rect(0,0,0,0); //структура для хранения координат внутри части окна, где будет рисоваться график с осями координат,
-		//обозначаними осей, числоввыми значаниями и полями для масштабирования осей
+                                                          //обозначаними осей, числоввыми значаниями и полями для масштабирования осей
 		Rect rectGraphBounds = new Rect(0,0,0,0); //структура для хранения координат внутри части окна, где будет рисоваться только линия графика 
 		this.Dispatcher.BeginInvoke(DispatcherPriority.Background, new DispatcherOperationCallback(delegate(Object state)
 		{
@@ -52,10 +52,8 @@ partial class Scull_Furnaces_Main_Window
 			}
 			LowerLimitForCurrentOnYAxis = 0;
 			UpperLimitForCurrentOnYAxis = Int32.Parse(maxValueForCurrentOnYAxis.Text);
-			axisX = new GeometryGroup();
-			axisY = new GeometryGroup();
-			
-			PrepareTransformations(
+
+            PrepareTransformations(
 			LowerLimitForTimeOnXAxis,UpperLimitForTimeOnXAxis,LowerLimitForCurrentOnYAxis,UpperLimitForCurrentOnYAxis,
 			xmin,xmax,ymin,ymax
 			);
@@ -68,9 +66,6 @@ partial class Scull_Furnaces_Main_Window
 			double dotsPerSecond = (xmax - xmin)/SecondsInADay;
 			int intSecondsPerDot = (int)(SecondsInADay/(xmax - xmin));
 			double dotsPerVolt = 100*step/100;
-
-
-			axisX = new GeometryGroup();
 			
 			axisX.Children.Add(new LineGeometry(WtoD(new Point(LowerLimitForTimeOnXAxis, LowerLimitForCurrentOnYAxis)), WtoD(new Point(UpperLimitForTimeOnXAxis, LowerLimitForCurrentOnYAxis))));
 			//Расставляем часовые деления на оси X
@@ -198,8 +193,7 @@ partial class Scull_Furnaces_Main_Window
             Canvas.SetTop(label, y);
         }
 
-
-	}
+     }
 		 
-}
+  }
 }

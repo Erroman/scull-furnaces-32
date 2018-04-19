@@ -38,8 +38,6 @@ class VisualHostForPlot_1:FrameworkElement
 		
 		double LowerLimitForTimeOnXAxis = Int32.Parse(scull_Furnaces_Main_Window.begTimeOnXAxis.Ticks.Text);
 		double UpperLimitForTimeOnXAxis = Int32.Parse(scull_Furnaces_Main_Window.endTimeOnXAxis.Ticks.Text);
-		WriteLine("LowerLimitForTimeOnXAxis = {0}",LowerLimitForTimeOnXAxis);
-		WriteLine("UpperLimitForTimeOnXAxis = {0}",UpperLimitForTimeOnXAxis);
 		double step = Math.Round((xmax - xmin)/(24*6));
 		PrepareTransformations
 		(
@@ -48,7 +46,7 @@ class VisualHostForPlot_1:FrameworkElement
 		xmin,xmax,
 		ymin,ymax
 		);
-		int intSecondsPerDot = (int)((UpperLimitForTimeOnXAxis-LowerLimitForCurrentOnYAxis)/(xmax - xmin));
+		int intSecondsPerDot = (int)((UpperLimitForTimeOnXAxis- LowerLimitForTimeOnXAxis) /(xmax - xmin));
 		
 		DrawingVisual drawingVisual = new DrawingVisual();
 		DrawingContext drawingContext = drawingVisual.RenderOpen();
@@ -65,7 +63,7 @@ class VisualHostForPlot_1:FrameworkElement
 		for	
 		(
 		int currSec = (int)LowerLimitForCurrentOnYAxis;
-		currSec < (UpperLimitForTimeOnXAxis-LowerLimitForCurrentOnYAxis);
+		currSec < (UpperLimitForTimeOnXAxis- LowerLimitForTimeOnXAxis);
 		currSec ++
 		)	
 		{

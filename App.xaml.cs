@@ -52,14 +52,27 @@ namespace ScullFurnaces_32
 
             scull_Furnaces_Main_Window.begTimeOnXAxis.clockWatch.Alarm_On = false; //не обнавлять график при начальной установке диапазона времени для отображения 
             scull_Furnaces_Main_Window.endTimeOnXAxis.clockWatch.Alarm_On = false; //не обнавлять график при начальной установке диапазона времени для отображения 
+            scull_Furnaces_Main_Window.begTimeForVoltageOnXAxis.clockWatch.Alarm_On = false;
+            scull_Furnaces_Main_Window.endTimeForVoltageOnXAxis.clockWatch.Alarm_On = false;
+
             scull_Furnaces_Main_Window.begTimeOnXAxis.Ticks.Text = mySettings.TimeLowerBoundaryForTheCurrent.ToString();
             scull_Furnaces_Main_Window.endTimeOnXAxis.Ticks.Text = mySettings.TimeUpperBoundaryForTheCurrent.ToString();
+            scull_Furnaces_Main_Window.begTimeForVoltageOnXAxis.Ticks.Text = mySettings.TimeLowerBoundaryForTheVoltage.ToString();
+            scull_Furnaces_Main_Window.endTimeForVoltageOnXAxis.Ticks.Text = mySettings.TimeUpperBoundaryForTheVoltage.ToString();
+
             scull_Furnaces_Main_Window.begTimeOnXAxis.clockWatch.AlarmProcedure += scull_Furnaces_Main_Window.setMinTimeValue;
             scull_Furnaces_Main_Window.endTimeOnXAxis.clockWatch.AlarmProcedure += scull_Furnaces_Main_Window.setMaxTimeValue;
+            scull_Furnaces_Main_Window.begTimeForVoltageOnXAxis.clockWatch.AlarmProcedure += scull_Furnaces_Main_Window.setMinTimeForVoltageValue;
+            scull_Furnaces_Main_Window.endTimeForVoltageOnXAxis.clockWatch.AlarmProcedure += scull_Furnaces_Main_Window.setMaxTimeForVoltageValue;
+
             scull_Furnaces_Main_Window.momentOfTime.clockWatch.AlarmProcedure += scull_Furnaces_Main_Window.setParameterValueOnTheTab;
+
             scull_Furnaces_Main_Window.begTimeOnXAxis.clockWatch.Alarm_On = true;   //обновлять график при изменении нижней границы диапазона времени	
             scull_Furnaces_Main_Window.endTimeOnXAxis.clockWatch.Alarm_On = true; //обновлять график при изменении верхней границы диапазона времени
-            scull_Furnaces_Main_Window.unpackedParameters = unpackedParameters;
+            scull_Furnaces_Main_Window.begTimeForVoltageOnXAxis.clockWatch.Alarm_On = true;
+            scull_Furnaces_Main_Window.endTimeForVoltageOnXAxis.clockWatch.Alarm_On = true;
+
+            scull_Furnaces_Main_Window.unpackedParameters = this.unpackedParameters;
             scull_Furnaces_Main_Window.WindowStyle = WindowStyle.ToolWindow;
             scull_Furnaces_Main_Window.Show();
             //Создаём табло с набором дискретных параметров и привязкой каждого из них к свойству parameterState
@@ -210,16 +223,31 @@ namespace ScullFurnaces_32
             }
         }
         [UserScopedSetting()]
-        [DefaultSettingValue("0")]
-        public int TimeLowerBoundaryForTheCurrent
+        [DefaultSettingValue("86399")]
+        public int TimeUpperBoundaryForTheVoltage
         {
             get
             {
-                return ((int)this["TimeLowerBoundaryForTheCurrent"]);
+                return ((int)this["TimeUpperBoundaryForTheVoltage"]);
             }
             set
             {
-                this["TimeLowerBoundaryForTheCurrent"] = (int)value;
+                this["TimeUpperBoundaryForTheVoltage"] = (int)value;
+                //			this.Save();
+            }
+
+        }
+        [UserScopedSetting()]
+        [DefaultSettingValue("0")]
+        public int TimeLowerBoundaryForTheVoltage
+        {
+            get
+            {
+                return ((int)this["TimeLowerBoundaryForTheVoltage"]);
+            }
+            set
+            {
+                this["TimeLowerBoundaryForTheVoltage"] = (int)value;
                 //			this.Save();
             }
 
@@ -235,6 +263,20 @@ namespace ScullFurnaces_32
             set
             {
                 this["TimeUpperBoundaryForTheCurrent"] = (int)value;
+                //			this.Save();
+            }
+        }
+        [UserScopedSetting()]
+        [DefaultSettingValue("0")]
+        public int TimeLowerBoundaryForTheCurrent
+        {
+            get
+            {
+                return ((int)this["TimeLowerBoundaryForTheCurrent"]);
+            }
+            set
+            {
+                this["TimeLowerBoundaryForTheCurrent"] = (int)value;
                 //			this.Save();
             }
 

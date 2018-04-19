@@ -21,7 +21,10 @@ namespace ScullFurnaces_32
             { 
                 Point clickPoint = e.GetPosition((Canvas)sender);
                 doTheLineDrawing(sender, clickPoint);
+                momentOfTime.clockWatch.Alarm_On = false;
                 momentOfTime.clockWatch.Ticks = (int)DtoW(clickPoint).X;
+                momentOfTime.clockWatch.Alarm_On = true;
+                WriteLine("drawTheVerticalLine, the name of a sender: {0}", ((Canvas)sender).Name);
             }
 
         }

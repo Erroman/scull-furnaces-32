@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.ComponentModel;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -29,10 +30,13 @@ namespace ScullFurnaces_32
             //И где-то здесь мне надо привязать к таймеру выбор параметра в элементе TextBox instantParameterValue
             //но логичнее это сделать в App.xaml.cs, ведь там я привязал дискреты к таймеру!
         }
-        void OnClosing(object o, EventArgs ea)
+        void Window_Closing(object sender, CancelEventArgs e)
         {
             app.mySettings.TimeLowerBoundaryForTheCurrent = Int32.Parse(this.begTimeOnXAxis.Ticks.Text);
             app.mySettings.TimeUpperBoundaryForTheCurrent = Int32.Parse(this.endTimeOnXAxis.Ticks.Text);
+            app.mySettings.TimeLowerBoundaryForTheVoltage = Int32.Parse(this.begTimeForVoltageOnXAxis.Ticks.Text);
+            app.mySettings.TimeUpperBoundaryForTheVoltage = Int32.Parse(this.endTimeForVoltageOnXAxis.Ticks.Text);
+            WriteLine("Upper an lower boundaries for time");
             app.mySettings.Save();
 
         }
@@ -127,6 +131,18 @@ namespace ScullFurnaces_32
         {
             currentGraph.Children.Clear();
             currentPlotting(ParameterName.Ток_общ, currentGraph, null, aea);
+
+        }
+        public void setMinTimeForVoltageValue(AlarmEventArgs aea)
+        {
+            voltageGraph.Children.Clear();
+            voltagePlotting(ParameterName.Напряжение_дуги, voltageGraph, aea);
+
+        }
+        public void setMaxTimeForVoltageValue(AlarmEventArgs aea)
+        {
+            voltageGraph.Children.Clear();
+            voltagePlotting(ParameterName.Напряжение_дуги, voltageGraph, null, aea);
 
         }
     }

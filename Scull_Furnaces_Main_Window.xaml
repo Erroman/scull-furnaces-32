@@ -6,7 +6,7 @@
         WindowStartupLocation="CenterScreen" WindowState="Maximized"
         xmlns:local="clr-namespace:ScullFurnaces_32"
         mc:Ignorable="d"
-        Title="Рабочее место оператора-технолога гарнисажных печей" Height="765.133" Width="1374.175">
+        Title="Рабочее место оператора-технолога гарнисажных печей" Height="765.133" Width="1374.175" Closing="Window_Closing">
     <Window.Resources>
         <!--local:TimePresenter x:Key = "timePresenter"/-->
         <!--local:TimeUnit x:Key = "timeUnit"/-->
@@ -51,12 +51,6 @@
 
         <local:TabControlEx x:Name="tabControl" Grid.Row="0" SelectedIndex = "{Binding Path=theNumberOfTab, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             <TabItem Header="Напряжение дуги">
-
-                <!--Border Name = "border" BorderThickness="10" BorderBrush="GreenYellow">
-                    <Canvas Name="voltageGraph" Background="White" Loaded = "voltageGraph_Loaded"
-						VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                    </Canvas>
-                </-->
                 <Grid  ShowGridLines="True">
                     <Grid.RowDefinitions>
                         <RowDefinition Height ="25*"/>

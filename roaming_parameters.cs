@@ -54,9 +54,5 @@ namespace ScullFurnaces_32
                 instantParameterValue.Content = String.Format("{0} " + unitOfMeasure, (float)intAssembled / 10);
             }
         }
-        public void setVerticalCursor(AlarmEventArgs aea)
-        {
-            if (theCanvasToDraw != null) doTheLineDrawing(theCanvasToDraw, new System.Windows.Point(aea.TicksToAlarm, 0));
-        }
     }
 }
