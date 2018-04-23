@@ -15,16 +15,12 @@ namespace ScullFurnaces_32
         //Point lastMousePosition;
         //bool isTheLine = false;
         Path theYLine = null;
-        void drawTheVerticalLine(object sender, MouseEventArgs e)
+        void putTheTimeByMouse(object sender, MouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
             { 
                 Point clickPoint = e.GetPosition((Canvas)sender);
-                doTheLineDrawing(sender, clickPoint);
-                momentOfTime.clockWatch.Alarm_On = false;
                 momentOfTime.clockWatch.Ticks = (int)DtoW(clickPoint).X;
-                momentOfTime.clockWatch.Alarm_On = true;
-                WriteLine("drawTheVerticalLine, the name of a sender: {0}", ((Canvas)sender).Name);
             }
 
         }
@@ -43,5 +39,7 @@ namespace ScullFurnaces_32
                 theYLine = myPath;
 
         }
+        //Привязываемся к номеру вкладки, чтобы начертить на графике это йвкладки вертикальный курсор
+
     }
 }

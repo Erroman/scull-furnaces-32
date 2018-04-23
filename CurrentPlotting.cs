@@ -14,6 +14,9 @@ partial class Scull_Furnaces_Main_Window
 	 {
  		double LowerLimitForCurrentOnYAxis;
 		double UpperLimitForCurrentOnYAxis;
+        double LowerLimitForTimeOnXAxis;
+        double UpperLimitForTimeOnXAxis;
+
         theCanvasToDraw = canGraph;
 		GeometryGroup axisX = new GeometryGroup();
 		GeometryGroup axisY = new GeometryGroup();
@@ -28,6 +31,7 @@ partial class Scull_Furnaces_Main_Window
 			canGraph.Children.Clear();
 			rectGraphWithAxesBounds.Width=canGraph.ActualWidth;
 			rectGraphWithAxesBounds.Height=canGraph.ActualHeight;
+
 			
 	
             double xmin = marginX;

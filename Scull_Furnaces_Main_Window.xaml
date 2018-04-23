@@ -63,7 +63,7 @@
                     </Grid.ColumnDefinitions>
                     <TextBox x:Name="maxValueForVoltageOnYAxis" Text="{Binding UpperLimitForVoltage, Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,0,0" LostFocus="setMaxYValueForGraphOfVoltage" KeyDown="setMaxYValueForGraphOfVoltage" />
                     <Canvas Grid.Row = "0" Grid.Column = "1" Name="voltageGraph" Background="White" Loaded = "voltageGraph_Loaded"
-						VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.ColumnSpan="2" MouseDown="drawTheVerticalLine" MouseMove="drawTheVerticalLine"/>
+						VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.ColumnSpan="2" MouseDown="putTheTimeByMouse" MouseMove="putTheTimeByMouse"/>
                     <DockPanel Grid.Row="1" Grid.Column="1"  LastChildFill  ="False" Grid.ColumnSpan="2">
                         <local:Clock x:Name="begTimeForVoltageOnXAxis" DockPanel.Dock ="Left"/>
                         <local:Clock x:Name="endTimeForVoltageOnXAxis" DockPanel.Dock ="Right"/>
@@ -83,7 +83,7 @@
                     </Grid.ColumnDefinitions>
                     <TextBox x:Name="maxValueForCurrentOnYAxis" Text="{Binding UpperLimitForCurrent, Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,0,0" LostFocus="setMaxYValueForGraphOfCurrent" KeyDown="setMaxYValueForGraphOfCurrent" />
                     <Canvas Grid.Row = "0" Grid.Column = "1" Name="currentGraph" Background="White" Loaded = "currentGraph_Loaded"
-						VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.ColumnSpan="2" MouseDown="drawTheVerticalLine" MouseMove="drawTheVerticalLine"/>
+						VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.ColumnSpan="2" MouseDown="putTheTimeByMouse" MouseMove="putTheTimeByMouse"/>
                     <DockPanel Grid.Row="1" Grid.Column="1"  LastChildFill  ="False" Grid.ColumnSpan="2">
                         <local:Clock x:Name="begTimeOnXAxis" DockPanel.Dock ="Left"/>
                         <local:Clock x:Name="endTimeOnXAxis" DockPanel.Dock ="Right"/>

@@ -17,9 +17,7 @@ namespace ScullFurnaces_32
         const double dashHalfHourTickLength = 7;
         const double dashMinuteTickLength = 5;
         const double axisLineThickness = 1;
-        double LowerLimitForTimeOnXAxis;
-        double UpperLimitForTimeOnXAxis;
-        
+       
 
 
     }
