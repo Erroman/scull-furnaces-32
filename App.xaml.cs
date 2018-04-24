@@ -32,6 +32,10 @@ namespace ScullFurnaces_32
             scull_Furnaces_Main_Window.InitializeComponent();
             //Устанавливаем имя считываемого файла из сохранённого значания, оно будет обновлятся
             //после диалога с пользователем
+            TabControlData[0].canvasForDiplayedPlot = scull_Furnaces_Main_Window.voltageGraph;
+            TabControlData[1].canvasForDiplayedPlot = scull_Furnaces_Main_Window.currentGraph;
+            TabControlData[2].canvasForDiplayedPlot = scull_Furnaces_Main_Window.vacuumGraph;
+            TabControlData[3].canvasForDiplayedPlot = scull_Furnaces_Main_Window.waterGraph;
             scull_Furnaces_Main_Window._remembranceOfFileName.fileName = mySettings.FileName;
             //записываем его в глобальное поле как для доступа из консольной программы 
             Globals.fileName = scull_Furnaces_Main_Window._remembranceOfFileName.fileName;
@@ -66,7 +70,7 @@ namespace ScullFurnaces_32
             scull_Furnaces_Main_Window.endTimeForVoltageOnXAxis.clockWatch.AlarmProcedure += scull_Furnaces_Main_Window.setMaxTimeForVoltageValue;
 
             scull_Furnaces_Main_Window.momentOfTime.clockWatch.AlarmProcedure += scull_Furnaces_Main_Window.setParameterValueOnTheTab;
-
+            scull_Furnaces_Main_Window.momentOfTime.clockWatch.AlarmProcedure += testAlarm;
             scull_Furnaces_Main_Window.begTimeOnXAxis.clockWatch.Alarm_On = true;   //обновлять график при изменении нижней границы диапазона времени	
             scull_Furnaces_Main_Window.endTimeOnXAxis.clockWatch.Alarm_On = true; //обновлять график при изменении верхней границы диапазона времени
             scull_Furnaces_Main_Window.begTimeForVoltageOnXAxis.clockWatch.Alarm_On = true;
@@ -102,19 +106,23 @@ namespace ScullFurnaces_32
             //автоматически через привязку BINDING к номеру вкладки в XAML окна
 
             scull_Furnaces_Main_Window._typeOfParameters.PropertyChanged += SelectThePageWithParameters;
+            scull_Furnaces_Main_Window._typeOfParameters.PropertyChanged += testSelectPage;
             scull_Furnaces_Main_Window._typeOfParameters.theNumberOfTab = mySettings.SelectedIndex;
             TimeMover.numberOfSecond = 0;
 
         }
         void SelectThePageWithParameters(object o, PropertyChangedEventArgs a)
         {
+            WriteLine("void SelectThePageWithParameters(object o, PropertyChangedEventArgs a)");
             scull_Furnaces_Main_Window.setParameterValueOnTheTab(new AlarmEventArgs() { TicksToAlarm = scull_Furnaces_Main_Window.momentOfTime.clockWatch.Ticks });
             scull_Furnaces_Main_Window.Background = chooseTheColorScheme(scull_Furnaces_Main_Window._typeOfParameters.theNumberOfTab);
             mySettings.SelectedIndex = scull_Furnaces_Main_Window._typeOfParameters.theNumberOfTab;
             mySettings.Save();
 
         }
-        
+        void testAlarm(AlarmEventArgs ae) { WriteLine("test Alarm"); }
+        void testSelectPage(object o, PropertyChangedEventArgs a) { WriteLine("test Select Page"); }
+
         void rememberTheChosenFileName(object o, PropertyChangedEventArgs a)
         {
             mySettings.FileName = scull_Furnaces_Main_Window._remembranceOfFileName.fileName;

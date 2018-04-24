@@ -14,7 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using static Constants;
 namespace ScullFurnaces_32
 {
     partial class Scull_Furnaces_Main_Window
@@ -69,20 +69,18 @@ namespace ScullFurnaces_32
                 app.unpackedParameters = new TickParamsAll(packedParameters); //получение распакованного массива
                 this._remembranceOfFileName.fileName = Globals.fileName;
                 //TimeMover.numberOfSecond = TimeMover.numberOfSecond;
-                voltagePlotting(ParameterName.Напряжение_дуги, voltageGraph);
-                currentPlotting(ParameterName.Ток_общ, currentGraph);
-                vacuumPlotting(ParameterName.Вакуум, vacuumGraph);
-                waterPlotting(ParameterName.Расход_воды, waterGraph);
+                //voltagePlotting(ParameterName.Напряжение_дуги, voltageGraph);
+                //currentPlotting(ParameterName.Ток_общ, currentGraph);
+                //vacuumPlotting(ParameterName.Вакуум, vacuumGraph);
+                //waterPlotting(ParameterName.Расход_воды, waterGraph);
             }
         }
         private void voltageGraph_Loaded(object sender, RoutedEventArgs e)
         {
-
             voltagePlotting(ParameterName.Напряжение_дуги, voltageGraph);
         }
         private void currentGraph_Loaded(object sender, RoutedEventArgs e)
         {
-            WriteLine("currentGraph_Loaded");
             currentPlotting(ParameterName.Ток_общ, currentGraph);
         }
         private void vacuumGraph_Loaded(object sender, RoutedEventArgs e)

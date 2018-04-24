@@ -17,7 +17,7 @@ partial class Scull_Furnaces_Main_Window
         double LowerLimitForTimeOnXAxis;
         double UpperLimitForTimeOnXAxis;
 
-            theCanvasToDraw = voltageGraph;
+        TabControlData[_typeOfParameters.theNumberOfTab].canvasForDiplayedPlot = canGraph;
         GeometryGroup axisX = new GeometryGroup();
         GeometryGroup axisY = new GeometryGroup();
 

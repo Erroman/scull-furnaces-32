@@ -18,7 +18,8 @@ namespace ScullFurnaces_32
         void putTheTimeByMouse(object sender, MouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
-            { 
+            {
+                Console.WriteLine(" void putTheTimeByMouse(object sender, MouseEventArgs e)");
                 Point clickPoint = e.GetPosition((Canvas)sender);
                 momentOfTime.clockWatch.Ticks = (int)DtoW(clickPoint).X;
             }

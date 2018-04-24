@@ -156,8 +156,8 @@
             </Grid>
 
 
-            <Label x:Name="instantParameterName" Content="{Binding Path=theNameOfParameter, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1"  FontSize="16" Background="Black"  Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" />
-            <Label x:Name="instantParameterValue" Content="{Binding Path=theValueOfParameter, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1"  FontSize="16" Background="Black"  Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="131,9,135,11" Grid.Row="1" />
+            <Label x:Name="instantParameterName"   Grid.Column="1"  FontSize="16" Background="Black"  Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            <Label x:Name="instantParameterValue"  Grid.Column="1"  FontSize="16" Background="Black"  Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="131,9,135,11" Grid.Row="1" />
 
             <TextBlock Grid.Column="2" Foreground="White" Text="{Binding Source = {StaticResource RememberedfileName},Path=FileName,Mode = OneWay}" x:Name ="filePathTextBox" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16"/>
             <Button Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="filePickerButton" Click="filePickerButton_Click" Content="Выбор файла"/>

@@ -17,8 +17,8 @@ partial class Scull_Furnaces_Main_Window
         double LowerLimitForTimeOnXAxis;
         double UpperLimitForTimeOnXAxis;
 
-        theCanvasToDraw = canGraph;
-		GeometryGroup axisX = new GeometryGroup();
+        TabControlData[_typeOfParameters.theNumberOfTab].canvasForDiplayedPlot = canGraph;
+        GeometryGroup axisX = new GeometryGroup();
 		GeometryGroup axisY = new GeometryGroup();
 
 		Rect rectGraphWithAxesBounds = new Rect(0,0,0,0); //структура для хранения координат внутри части окна, где будет рисоваться график с осями координат,
