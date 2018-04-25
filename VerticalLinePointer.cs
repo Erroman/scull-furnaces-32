@@ -12,9 +12,6 @@ namespace ScullFurnaces_32
     
     partial class Scull_Furnaces_Main_Window
     {
-        //Point lastMousePosition;
-        //bool isTheLine = false;
-        Path theYLine = null;
         void putTheTimeByMouse(object sender, MouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
@@ -25,7 +22,7 @@ namespace ScullFurnaces_32
             }
 
         }
-        void doTheLineDrawing(object sender, Point clickPoint)
+        void doTheLineDrawing(object sender, Point clickPoint,TabData tab)
         {
                 LineGeometry myLineGeometry = new LineGeometry();
                 myLineGeometry.StartPoint = new Point(clickPoint.X, ((Canvas)sender).ActualHeight-marginY);
@@ -35,9 +32,9 @@ namespace ScullFurnaces_32
                 myPath.Stroke = Brushes.Black;
                 myPath.StrokeThickness = 0.5;
                 myPath.Data = myLineGeometry;
-                if(theYLine!=null) ((Canvas)sender).Children.Remove(theYLine);
+                if(tab.lineToShowTheCursor!=null) ((Canvas)sender).Children.Remove(tab.lineToShowTheCursor);
                 ((Canvas)sender).Children.Add(myPath);
-                theYLine = myPath;
+                tab.lineToShowTheCursor = myPath;
 
         }
         //Привязываемся к номеру вкладки, чтобы начертить на графике это йвкладки вертикальный курсор

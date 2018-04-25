@@ -49,7 +49,7 @@ namespace ScullFurnaces_32
                         break;
                 }
                 if (tab.canvasForDiplayedPlot != null) Console.WriteLine(tab.canvasForDiplayedPlot.Name);
-                if (tab.canvasForDiplayedPlot != null) doTheLineDrawing(tab.canvasForDiplayedPlot, WtoD(new Point(aea.TicksToAlarm, 0)));
+                if (tab.canvasForDiplayedPlot != null) doTheLineDrawing(tab.canvasForDiplayedPlot, WtoD(new Point(aea.TicksToAlarm, 0)),tab);
                 instantParameterValue.Visibility = Visibility.Visible;
                 instantParameterName.Visibility = Visibility.Visible;
                 instantParameterValue.Content = String.Format("{0} " + unitOfMeasure, (float)intAssembled / 10);
