@@ -17,7 +17,6 @@ partial class Scull_Furnaces_Main_Window
         double LowerLimitForTimeOnXAxis;
         double UpperLimitForTimeOnXAxis;
 
-        TabControlData[_typeOfParameters.theNumberOfTab].canvasForDiplayedPlot = canGraph;
         GeometryGroup axisX = new GeometryGroup();
 		GeometryGroup axisY = new GeometryGroup();
 
@@ -31,7 +30,6 @@ partial class Scull_Furnaces_Main_Window
 			canGraph.Children.Clear();
 			rectGraphWithAxesBounds.Width=canGraph.ActualWidth;
 			rectGraphWithAxesBounds.Height=canGraph.ActualHeight;
-
 			
 	
             double xmin = marginX;
@@ -196,8 +194,6 @@ partial class Scull_Furnaces_Main_Window
 					else y += label.DesiredSize.Height / 6;
             Canvas.SetTop(label, y);
         }
-
      }
-		 
-  }
+   }
 }

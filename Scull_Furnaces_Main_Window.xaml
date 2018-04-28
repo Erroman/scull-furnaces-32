@@ -91,13 +91,24 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Вакуум">
-
-                <Border Name = "border_3" BorderThickness="10" BorderBrush="GreenYellow">
-                    <Canvas Name="vacuumGraph" Background="White" Loaded = "vacuumGraph_Loaded"
-						VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                    </Canvas>
-                </Border>
-
+                <Grid  ShowGridLines="True">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height ="25*"/>
+                        <RowDefinition Height ="2*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width ="65*"/>
+                        <ColumnDefinition Width ="57*"/>
+                        <ColumnDefinition Width="1238*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="maxValueForVacuumOnYAxis" Text="{Binding UpperLimitForCurrent, Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,0,0" LostFocus="setMaxYValueForGraphOfCurrent" KeyDown="setMaxYValueForGraphOfCurrent" />
+                    <Canvas Grid.Row = "0" Grid.Column = "1" Name="vacuumGraph" Background="White" Loaded = "vacuumGraph_Loaded"
+						VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.ColumnSpan="2" MouseDown="putTheTimeByMouse" MouseMove="putTheTimeByMouse"/>
+                    <DockPanel Grid.Row="1" Grid.Column="1"  LastChildFill  ="False" Grid.ColumnSpan="2">
+                        <local:Clock x:Name="begTimeForVacuumOnXAxis" DockPanel.Dock ="Left"/>
+                        <local:Clock x:Name="endTimeForVacuumOnXAxis" DockPanel.Dock ="Right"/>
+                    </DockPanel>
+                </Grid>
             </TabItem>
             <TabItem Header="Расход воды">
 
